@@ -1,32 +1,65 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { access, readFile } from "node:fs/promises";
-import test from "node:test";
+import test, { after } from "node:test";
+
+const port = 3210;
+let server;
+
+const delay = (milliseconds) =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+async function ensureServer() {
+  if (server) {
+    return;
+  }
+
+  server = spawn(
+    process.execPath,
+    ["node_modules/next/dist/bin/next", "start", "-p", String(port)],
+    { cwd: new URL("..", import.meta.url), stdio: "pipe" },
+  );
+
+  let startupError = "";
+  server.stderr.on("data", (chunk) => {
+    startupError += chunk.toString();
+  });
+
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    try {
+      const response = await fetch(`http://127.0.0.1:${port}/`);
+      if (response.ok) {
+        return;
+      }
+    } catch {
+      // The production server is still starting.
+    }
+
+    if (server.exitCode !== null) {
+      throw new Error(`Next.js production server exited: ${startupError}`);
+    }
+
+    await delay(100);
+  }
+
+  throw new Error(`Timed out waiting for Next.js production server: ${startupError}`);
+}
 
 async function render(pathname = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+  await ensureServer();
 
-  return worker.fetch(
-    new Request(`https://codeaux.example${pathname}`, {
-      headers: {
-        accept: "text/html",
-        host: "codeaux.example",
-        "x-forwarded-host": "codeaux.example",
-        "x-forwarded-proto": "https",
-      },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
+  return fetch(`http://127.0.0.1:${port}${pathname}`, {
+    headers: {
+      accept: "text/html",
+      "x-forwarded-host": "codeaux.example",
+      "x-forwarded-proto": "https",
     },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+  });
 }
+
+after(() => {
+  server?.kill();
+});
 
 test("server-renders the finished CodeAux homepage", async () => {
   const response = await render();

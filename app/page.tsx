@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Script from "next/script";
 import { headers } from "next/headers";
 import Analytics from "@/app/components/Analytics";
 import BeforeAfter from "@/app/components/BeforeAfter";
@@ -764,7 +765,8 @@ export default async function Home() {
         </div>
       </footer>
 
-      <script
+      <Script
+        id="codeaux-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData).replace(/</g, "\u003c"),

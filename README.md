@@ -1,7 +1,7 @@
 # CodeAux agency website
 
-Private-launch website for CodeAux, built with Vinext, React Server Components,
-TypeScript and Tailwind CSS for the OpenAI Sites / Cloudflare runtime.
+Private-launch website for CodeAux, built with Next.js, React Server Components,
+TypeScript and Tailwind CSS for Vercel.
 
 ## Local development
 
@@ -32,6 +32,18 @@ Lead capture requires `SUPABASE_URL` and a server-only
 Resend notification values are optional; captured leads remain stored if email
 delivery fails.
 
+## Vercel deployment
+
+Create or link a Vercel project from the repository root, then add the values
+from `.env.example` in Vercel's Environment Variables settings. Keep secrets
+such as `SUPABASE_SECRET_KEY` and Resend credentials server-only; only
+`NEXT_PUBLIC_*` values are exposed to the browser.
+
+```bash
+npx vercel
+npx vercel --prod
+```
+
 ## Proof content
 
 The five projects, three video reviews and before/after comparison are explicit
@@ -41,5 +53,5 @@ silently becoming published proof.
 
 ## Hosting
 
-`.openai/hosting.json` intentionally keeps D1 and R2 unused. The lead database is
-Supabase and access control is configured through the private Sites deployment.
+The site is configured for Vercel. The lead database is Supabase, and its access
+controls are configured independently in Supabase.
