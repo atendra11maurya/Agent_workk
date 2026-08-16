@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import { analyticsEvents, track } from "@/src/lib/analytics";
 
 export interface SiteNavigationItem {
@@ -196,7 +197,17 @@ export default function SiteChrome({
           aria-label="CodeAux home"
           onClick={closeMenu}
         >
-          Code<span>Aux</span>
+          <Image
+            className="site-logo site-logo--header"
+            src="/codeaux-logo.png"
+            alt="CodeAux logo"
+            width={52}
+            height={52}
+            priority
+          />
+          <span className="header-wordmark-text">
+            <span className="header-wordmark-code">Code</span><span className="header-wordmark-aux">Aux</span>
+          </span>
         </a>
 
         <nav className="site-chrome__desktop-nav" aria-label="Primary navigation">

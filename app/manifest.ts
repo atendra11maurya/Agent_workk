@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#050608",
     icons: [
       {
-        src: "/icon",
-        sizes: "64x64",
+        src: "/codeaux-logo.png",
+        sizes: "1536x1536",
         type: "image/png",
       },
     ],

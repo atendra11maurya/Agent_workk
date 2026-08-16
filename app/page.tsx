@@ -93,20 +93,24 @@ export default async function Home() {
       <main>
         <section className="hero" id="top">
           <div className="hero-copy">
-            <Reveal className="eyebrow" distance={12}>
-              <span /> Revenue-focused website design &amp; development
-            </Reveal>
             <Reveal delay={0.06} distance={24}>
               <h1>
-                We build websites that turn more visitors into{" "}
-                <em>business.</em>
+                We build
+                <br />
+                websites
+                <br />
+                that increase
+                <br />
+                <em>
+                  leads <span className="hero-heading-and">and</span> revenue
+                </em>
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
               <p className="hero-intro">
-                CodeAux combines conversion strategy, custom design and
-                high-performance development to help businesses attract
-                attention, build trust and turn visits into meaningful action.
+                We combine lead generation strategy, custom design and code
+                that runs smoothly to help businesses improve their online
+                visibility, build trust and turn visits into meaningful action.
               </p>
               <div className="hero-actions">
                 <Magnetic>
@@ -138,7 +142,6 @@ export default async function Home() {
                   {whatsappHref ? "WhatsApp Us" : "Get a Free Audit"}
                 </a>
               </div>
-              <p className="tagline">{siteIdentity.tagline}</p>
             </Reveal>
           </div>
 
@@ -192,14 +195,22 @@ export default async function Home() {
         </section>
 
         <section className="capability-strip" aria-label="Capabilities">
-          {capabilities.map((capability, index) => (
-            <span key={capability}>
-              {capability}
-              {index < capabilities.length - 1 ? (
-                <i aria-hidden="true" />
-              ) : null}
-            </span>
-          ))}
+          <div className="capability-strip__track">
+            {[false, true].map((isDuplicate) => (
+              <div
+                className="capability-strip__group"
+                aria-hidden={isDuplicate || undefined}
+                key={isDuplicate ? "duplicate" : "primary"}
+              >
+                {capabilities.map((capability) => (
+                  <span key={capability}>
+                    <i aria-hidden="true" />
+                    {capability}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="problem-section section-pad">
@@ -732,9 +743,17 @@ export default async function Home() {
       <footer className="site-footer">
         <div className="footer-brand">
           <a className="wordmark" href="#top">
-            Code<span>Aux</span>
+            <Image
+              className="site-logo site-logo--footer"
+              src="/codeaux-logo.png"
+              alt="CodeAux logo"
+              width={112}
+              height={112}
+            />
+            <span className="footer-wordmark-text">
+              <span className="footer-wordmark-code">Code</span><span className="footer-wordmark-aux">Aux</span>
+            </span>
           </a>
-          <p>{siteIdentity.tagline}</p>
         </div>
         <nav aria-label="Footer navigation">
           {navigation.map((item) => (

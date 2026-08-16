@@ -243,7 +243,7 @@ export function LeadForm({
         ) : null}
 
         <button
-          className="min-h-14 rounded-2xl bg-[#2f6bff] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#477cff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#79a0ff] focus-visible:ring-offset-4 focus-visible:ring-offset-[#050608] active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55"
+          className="min-h-14 rounded-full bg-[#2f6bff] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#477cff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#79a0ff] focus-visible:ring-offset-4 focus-visible:ring-offset-[#050608] active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55"
           type="submit"
           disabled={!available || pending}
         >
