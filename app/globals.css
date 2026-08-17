@@ -3335,21 +3335,32 @@ html.has-custom-cursor button {
 
 .massive-button--call {
   background: var(--blue);
-  box-shadow: 0 20px 40px rgba(47, 107, 255, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  box-shadow:
+    0 8px 16px rgba(39, 52, 70, 0.16),
+    0 20px 40px rgba(39, 52, 70, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .massive-button--call:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(47, 107, 255, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow:
+    0 10px 20px rgba(39, 52, 70, 0.18),
+    0 24px 46px rgba(39, 52, 70, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .massive-button--wa {
   background: linear-gradient(135deg, #25D366, #128C7E);
-  box-shadow: 0 20px 40px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  box-shadow:
+    0 8px 16px rgba(39, 52, 70, 0.16),
+    0 20px 40px rgba(39, 52, 70, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .massive-button--wa:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(37, 211, 102, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow:
+    0 10px 20px rgba(39, 52, 70, 0.18),
+    0 24px 46px rgba(39, 52, 70, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
-
