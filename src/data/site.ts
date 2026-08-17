@@ -28,6 +28,7 @@ export const siteIdentity = {
 export const navigation = [
   { label: "Home", href: "#top" },
   { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
 ] as const satisfies readonly NavigationItem[];
 
 export const capabilities = [
