@@ -584,7 +584,10 @@ export default async function Home() {
             <span className="eyebrow">
               <span aria-hidden="true" /> START A CONVERSATION
             </span>
-            <h2>Ready to build a website that works for your business?</h2>
+            <h2>
+              Ready to build a website<br />
+              <em>that works for your business?</em>
+            </h2>
             <p>Start a conversation directly, or send us your requirements and we'll get back to you.</p>
           </Reveal>
           <ConversionSection
