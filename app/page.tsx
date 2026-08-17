@@ -3,11 +3,11 @@ import Script from "next/script";
 import { headers } from "next/headers";
 import Analytics from "@/app/components/Analytics";
 import BeforeAfter from "@/app/components/BeforeAfter";
+import ConnectsProgress from "@/app/components/ConnectsProgress";
 import { LeadForm } from "@/app/components/LeadForm";
 import MotionLayer, { Magnetic, Reveal } from "@/app/components/MotionLayer";
 import SiteChrome from "@/app/components/SiteChrome";
 import {
-  additionalServices,
   capabilities,
   leadGenerationSteps,
   navigation,
@@ -102,7 +102,7 @@ export default async function Home() {
                 that increase
                 <br />
                 <em>
-                  leads <span className="hero-heading-and">and</span> revenue
+                  leads <span className="hero-heading-and">and</span> presence
                 </em>
               </h1>
             </Reveal>
@@ -234,10 +234,7 @@ export default async function Home() {
                 symptoms are usually visible in what customers cannot
                 understand, trust or do.
               </p>
-              <div className="problem-answer">
-                <span>CodeAux connects</span>
-                <strong>Strategy → Design → Development → Conversion</strong>
-              </div>
+              <ConnectsProgress />
             </div>
             <ol className="diagnosis-list">
               {problems.slice(0, 6).map((problem, index) => (
@@ -379,22 +376,6 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="service-index">
-            <div className="service-index__heading">
-              <p className="section-kicker">Focused support</p>
-              <h3>Additional services</h3>
-            </div>
-            <div className="service-rows">
-              {additionalServices.map((service, index) => (
-                <article key={service.id}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <h4>{service.title}</h4>
-                  <p>{service.description}</p>
-                  <i aria-hidden="true">↗</i>
-                </article>
-              ))}
-            </div>
-          </div>
         </section>
 
         <section className="why-section section-pad">
@@ -606,30 +587,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="about-section section-pad">
-          <div className="section-index">
-            <span>07</span>
-            <span>About CodeAux</span>
-          </div>
-          <div className="about-layout">
-            <p className="about-statement">
-              Most business websites are treated like online brochures.{" "}
-              <strong>We build them as business tools.</strong>
-            </p>
-            <div>
-              <p>
-                CodeAux is a small specialist team combining business
-                understanding, conversion thinking, design craftsmanship and
-                technical excellence.
-              </p>
-              <p>
-                We use “premium” to describe the standard of thinking and
-                execution—not unnecessary complexity.
-              </p>
-            </div>
-          </div>
-        </section>
-
         <section className="pricing-section section-pad">
           <div className="section-index">
             <span>08</span>
@@ -707,39 +664,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="contact-section section-pad" id="contact">
-          <div className="contact-copy">
-            <p className="section-kicker">Start a conversation</p>
-            <h2>
-              A short form.{" "}
-              <em>A serious conversation.</em>
-            </h2>
-            <p>
-              Share the best way to reach you. We&apos;ll start with your goals,
-              not a sales script.
-            </p>
-            <div className="contact-note">
-              <span>01</span>
-              <p>Tell us how to reach you.</p>
-              <span>02</span>
-              <p>We understand what you need.</p>
-              <span>03</span>
-              <p>We recommend the right next step.</p>
-            </div>
-          </div>
-          <div className="contact-form-shell">
-            <div className="form-topline">
-              <span>PROJECT ENQUIRY</span>
-              <span>3 FIELDS</span>
-            </div>
-            <LeadForm
-              kind="contact"
-              sourcePath="/#contact"
-              available={leadCaptureAvailable}
-              className="lead-form"
-            />
-          </div>
-        </section>
       </main>
 
       <footer className="site-footer">

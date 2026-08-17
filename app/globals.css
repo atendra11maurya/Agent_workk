@@ -307,13 +307,13 @@ main {
   display: flex;
   gap: 10px;
   color: #2f6bff;
-  font-size: 16px;
+  font-size: 12.8px;
 }
 
 .site-chrome__desktop-nav a {
-  width: 120px;
+  width: 96px;
   box-sizing: border-box;
-  padding: 9px 24px;
+  padding: 7.2px 19.2px;
   border: 0;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.92);
@@ -395,6 +395,11 @@ main {
   max-width: none;
 }
 
+/* Keep the hero copy legible while its reveal animation plays. */
+.hero-copy > .motion-reveal {
+  opacity: 1 !important;
+}
+
 .eyebrow {
   margin: 0 0 32px;
   display: flex;
@@ -415,7 +420,7 @@ main {
 
 h1 {
   margin: 0;
-  font: 500 clamp(56px, 6.25vw, 118px) / 0.92 var(--font-space-grotesk);
+  font: 500 clamp(50.4px, 5.625vw, 106.2px) / 0.92 var(--font-space-grotesk);
   letter-spacing: -0.065em;
   text-wrap: balance;
 }
@@ -429,38 +434,42 @@ h1 em {
   font-style: normal;
 }
 
+.hero h1 em {
+  white-space: nowrap;
+}
+
 .hero h1 .hero-heading-and {
   color: #f5f7fa;
 }
 
 .hero-intro {
-  max-width: 610px;
-  margin: 34px 0 0;
+  max-width: 549px;
+  margin: 30.6px 0 0;
   color: var(--muted);
-  font-size: clamp(16px, 1.3vw, 19px);
+  font-size: clamp(14.4px, 1.17vw, 17.1px);
   line-height: 1.68;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 38px;
+  gap: 12.6px;
+  margin-top: 34.2px;
 }
 
 .hero-actions .button {
-  min-width: 281px;
-  min-height: 66px;
-  padding: 0 44px;
-  font-size: 16px;
-  gap: 17px;
+  min-width: 252.9px;
+  min-height: 59.4px;
+  padding: 0 39.6px;
+  font-size: 14.4px;
+  gap: 15.3px;
 }
 
 .hero-actions .button-secondary {
-  min-width: 146px;
-  min-height: 66px;
-  padding: 0 29px;
-  font-size: 16px;
+  min-width: 131.4px;
+  min-height: 59.4px;
+  padding: 0 26.1px;
+  font-size: 14.4px;
 }
 
 .button {
@@ -902,7 +911,7 @@ h1 em {
 }
 
 .problem-heading h2 em {
-  color: #7a8492;
+  color: var(--blue);
 }
 
 .problem-grid {
@@ -943,6 +952,116 @@ h1 em {
 
 .problem-answer strong {
   font: 550 18px/1.45 var(--font-space-grotesk);
+}
+
+.connects-progress {
+  padding: 24px 0 12px;
+  border-top: 1px solid rgba(5, 6, 8, 0.16);
+  border-bottom: 1px solid rgba(5, 6, 8, 0.16);
+}
+
+.connects-progress__label {
+  display: block;
+  margin-bottom: 24px;
+  color: #7a8492;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.connects-progress__steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+}
+
+.connects-progress__step-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.connects-progress__rail {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--blue) 0 var(--progress),
+    #b9c3d0 var(--progress) 100%
+  );
+}
+
+.connects-progress__rail::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #b9c3d0;
+  border-bottom: 2px solid #b9c3d0;
+  transform: rotate(45deg);
+}
+
+.connects-progress__rail::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
+  transform: rotate(45deg);
+  clip-path: inset(calc(100% - var(--progress)) 0 0 0);
+}
+
+.connects-progress__step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #91a0b5;
+  transition: color 360ms ease;
+}
+
+.connects-progress__step.is-active {
+  color: #080b10;
+}
+
+.connects-progress__step strong {
+  font: 550 20px/1.2 var(--font-space-grotesk);
+}
+
+.connects-progress__dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #91a0b5;
+  border-radius: 50%;
+  background: var(--white);
+  transition: border-color 360ms ease, background 360ms ease;
+}
+
+.connects-progress__step.is-active .connects-progress__dot {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.connects-progress__arrow {
+  margin: 8px 0 8px 1px;
+  color: #b9c3d0;
+  font-size: 21px;
+  line-height: 1;
+  transition: color 360ms ease, transform 360ms ease;
+}
+
+.connects-progress__arrow.is-filled {
+  color: var(--blue);
+  transform: translateY(2px);
 }
 
 .diagnosis-list {
