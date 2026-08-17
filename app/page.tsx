@@ -580,13 +580,12 @@ export default async function Home() {
         </section>
 
         <section id="contact" className="unified-cta-section section-pad">
-          <div className="unified-cta-topline" aria-hidden="true" />
           <Reveal className="unified-cta-intro">
             <span className="eyebrow">
-              LET'S WORK TOGETHER
+              <span aria-hidden="true" /> START A CONVERSATION
             </span>
-            <h2>Ready to build a website that grows your business?</h2>
-            <p>Start a conversation directly, or send us the details of your project.</p>
+            <h2>Ready to build a website that works for your business?</h2>
+            <p>Start a conversation directly, or send us your requirements and we'll get back to you.</p>
           </Reveal>
           <ConversionSection
             whatsappHref={whatsappHref}

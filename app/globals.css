@@ -3291,12 +3291,3 @@ html.has-custom-cursor button {
   }
 }
 
-
-.unified-cta-topline {
-  width: 100%;
-  max-width: 720px;
-  height: 1px;
-  background: #050608;
-  margin-bottom: 48px;
-}
-

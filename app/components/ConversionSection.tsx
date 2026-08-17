@@ -21,7 +21,10 @@ export type ConversionSectionProps = {
 };
 
 const inputClassName =
-  "min-h-14 w-full border border-dashed border-[#aeb6c2] bg-transparent px-4 py-3 text-base text-[#050608] outline-none transition placeholder:text-[#687281] focus:border-[#050608] disabled:opacity-55";
+  "min-h-14 w-full rounded-2xl border border-white/15 bg-[#0b0e13] px-4 py-3 text-base text-[#f5f7fa] outline-none transition placeholder:text-[#687281] hover:border-white/25 focus:border-[#2f6bff] focus:ring-2 focus:ring-[#2f6bff]/35 disabled:cursor-not-allowed disabled:opacity-55";
+
+const textareaClassName =
+  "min-h-24 w-full resize-y rounded-2xl border border-white/15 bg-[#0b0e13] px-4 py-3 text-base text-[#f5f7fa] outline-none transition placeholder:text-[#687281] hover:border-white/25 focus:border-[#2f6bff] focus:ring-2 focus:ring-[#2f6bff]/35 disabled:cursor-not-allowed disabled:opacity-55";
 
 function newSubmissionId() {
   if (typeof globalThis.crypto?.randomUUID === "function") {
@@ -96,6 +99,7 @@ export function ConversionSection({
   const emailError = firstErrorFor(state, "email");
   const phoneError = firstErrorFor(state, "phone");
   const websiteError = firstErrorFor(state, "websiteUrl");
+  const projectDetailsError = firstErrorFor(state, "projectDetails");
 
   function ensureSubmissionId() {
     if (submissionIdRef.current && !submissionIdRef.current.value) {
@@ -111,12 +115,22 @@ export function ConversionSection({
     track(analyticsEvents.leadFormStart, { kind: intent === "audit" ? "audit" : "contact", source_path: sourcePath });
   }
 
+  const submitLabel =
+    intent === "build"
+      ? "Send Project Enquiry →"
+      : intent === "redesign"
+        ? "Discuss My Redesign →"
+        : "Get My Free Audit →";
+
   const resolvedKind = intent === "audit" ? "audit" : "contact";
 
   return (
     <div className={`conversion-box ${className}`.trim()}>
       <div className="conversion-box__direct">
         <span className="conversion-micro-label">TALK TO US DIRECTLY</span>
+        <p className="conversion-direct-support">
+          Have a project in mind? Skip the form and talk to us directly.
+        </p>
 
         <div className="conversion-direct-actions">
           {whatsappHref && (
@@ -128,7 +142,7 @@ export function ConversionSection({
               data-analytics-event="whatsapp_click"
               data-analytics-placement="contact_section"
             >
-              WhatsApp →
+              WhatsApp Us →
             </a>
           )}
           {phoneNumber && (
@@ -154,12 +168,12 @@ export function ConversionSection({
         </div>
 
         <p className="conversion-direct-trust">
-          Usually replies quickly
+          No sales pressure. Just tell us what you're trying to build.
         </p>
       </div>
 
       <div className="conversion-divider" aria-hidden="true">
-        <span>OR SEND DETAILS</span>
+        <span>OR SEND YOUR REQUIREMENTS</span>
       </div>
 
       <form
@@ -195,7 +209,7 @@ export function ConversionSection({
         <fieldset className="conversion-fieldset" disabled={!available || pending}>
           <div className="grid gap-4 mb-4">
             <div className="grid gap-2">
-              <label className="text-sm font-semibold text-[#050608]" htmlFor="contact-name">
+              <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-name">
                 Name
               </label>
               <input
@@ -218,7 +232,7 @@ export function ConversionSection({
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <label className="text-sm font-semibold text-[#050608]" htmlFor="contact-email">
+                <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-email">
                   Email
                 </label>
                 <input
@@ -241,8 +255,8 @@ export function ConversionSection({
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm font-semibold text-[#050608]" htmlFor="contact-phone">
-                  Phone
+                <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-phone">
+                  Phone / WhatsApp <span className="text-[#687281] font-normal">(optional)</span>
                 </label>
                 <input
                   className={inputClassName}
@@ -264,74 +278,187 @@ export function ConversionSection({
             </div>
           </div>
 
-          <div className="grid gap-3 mb-6">
-            <span className="text-sm font-semibold text-[#050608]">What can we help you with?</span>
-            <div className="flex flex-col gap-2">
-              <label className="flex items-center gap-2 cursor-pointer text-[#050608] font-medium text-sm">
-                <input
-                  type="radio"
-                  name="intent_radio"
-                  checked={intent === "build"}
-                  onChange={() => setIntent("build")}
-                  className="w-4 h-4 accent-[#050608]"
-                />
-                Build a website
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer text-[#050608] font-medium text-sm">
-                <input
-                  type="radio"
-                  name="intent_radio"
-                  checked={intent === "redesign"}
-                  onChange={() => setIntent("redesign")}
-                  className="w-4 h-4 accent-[#050608]"
-                />
+          <div className="grid gap-3 mb-5">
+            <span className="text-sm font-semibold text-[#f5f7fa]">What can we help you with?</span>
+            <div className="intent-selector">
+              <button
+                type="button"
+                className={`intent-pill ${intent === "build" ? "active" : ""}`}
+                onClick={() => setIntent("build")}
+                aria-pressed={intent === "build"}
+              >
+                Build a new website
+              </button>
+              <button
+                type="button"
+                className={`intent-pill ${intent === "redesign" ? "active" : ""}`}
+                onClick={() => setIntent("redesign")}
+                aria-pressed={intent === "redesign"}
+              >
                 Redesign my website
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer text-[#050608] font-medium text-sm">
-                <input
-                  type="radio"
-                  name="intent_radio"
-                  checked={intent === "audit"}
-                  onChange={() => setIntent("audit")}
-                  className="w-4 h-4 accent-[#050608]"
-                />
+              </button>
+              <button
+                type="button"
+                className={`intent-pill ${intent === "audit" ? "active" : ""}`}
+                onClick={() => setIntent("audit")}
+                aria-pressed={intent === "audit"}
+              >
                 Free website audit
-              </label>
+              </button>
             </div>
           </div>
 
-          <div className="grid gap-2 mb-6">
-            <label className="text-sm font-semibold text-[#050608]" htmlFor="contact-website-url">
-              Website URL (optional)
-            </label>
-            <input
-              className={inputClassName}
-              id="contact-website-url"
-              name="websiteUrl"
-              type="url"
-              inputMode="url"
-              autoComplete="url"
-              placeholder="yourwebsite.com"
-              maxLength={2048}
-              aria-invalid={Boolean(websiteError)}
-              aria-describedby={websiteError ? "contact-website-url-error" : undefined}
-            />
-            {websiteError ? (
-              <p id="contact-website-url-error" className="text-sm text-[#ff9b9b]">
-                {websiteError}
-              </p>
-            ) : null}
+          <div className="intent-conditional-area mb-6">
+            {intent === "build" && (
+              <div className="grid gap-4 intent-fade-in">
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-project-details">
+                    Tell us briefly what you're looking to build
+                  </label>
+                  <textarea
+                    className={textareaClassName}
+                    id="contact-project-details"
+                    name="projectDetails"
+                    placeholder="E.g. restaurant website, company website, portfolio, e-commerce site..."
+                    maxLength={2000}
+                    aria-invalid={Boolean(projectDetailsError)}
+                  />
+                  {projectDetailsError && (
+                    <p className="text-sm text-[#ff9b9b]">{projectDetailsError}</p>
+                  )}
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-website-url">
+                    Existing website URL <span className="text-[#687281] font-normal">(optional)</span>
+                  </label>
+                  <input
+                    className={inputClassName}
+                    id="contact-website-url"
+                    name="websiteUrl"
+                    type="url"
+                    inputMode="url"
+                    autoComplete="url"
+                    placeholder="yourwebsite.com"
+                    maxLength={2048}
+                    aria-invalid={Boolean(websiteError)}
+                    aria-describedby={websiteError ? "contact-website-url-error" : undefined}
+                  />
+                  {websiteError ? (
+                    <p id="contact-website-url-error" className="text-sm text-[#ff9b9b]">
+                      {websiteError}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            )}
+
+            {intent === "redesign" && (
+              <div className="grid gap-4 intent-fade-in">
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-website-url">
+                    Current Website URL
+                  </label>
+                  <input
+                    className={inputClassName}
+                    id="contact-website-url"
+                    name="websiteUrl"
+                    type="url"
+                    inputMode="url"
+                    autoComplete="url"
+                    placeholder="yourwebsite.com"
+                    maxLength={2048}
+                    required
+                    aria-invalid={Boolean(websiteError)}
+                    aria-describedby={websiteError ? "contact-website-url-error" : undefined}
+                  />
+                  {websiteError ? (
+                    <p id="contact-website-url-error" className="text-sm text-[#ff9b9b]">
+                      {websiteError}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-project-details">
+                    What would you like to improve?
+                  </label>
+                  <textarea
+                    className={textareaClassName}
+                    id="contact-project-details"
+                    name="projectDetails"
+                    placeholder="Tell us what's currently not working or what you'd like to improve."
+                    maxLength={2000}
+                    aria-invalid={Boolean(projectDetailsError)}
+                  />
+                  {projectDetailsError && (
+                    <p className="text-sm text-[#ff9b9b]">{projectDetailsError}</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {intent === "audit" && (
+              <div className="grid gap-4 intent-fade-in">
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-website-url">
+                    Website URL
+                  </label>
+                  <input
+                    className={inputClassName}
+                    id="contact-website-url"
+                    name="websiteUrl"
+                    type="url"
+                    inputMode="url"
+                    autoComplete="url"
+                    placeholder="yourwebsite.com"
+                    maxLength={2048}
+                    required
+                    aria-invalid={Boolean(websiteError)}
+                    aria-describedby={websiteError ? "contact-website-url-error" : undefined}
+                  />
+                  {websiteError ? (
+                    <p id="contact-website-url-error" className="text-sm text-[#ff9b9b]">
+                      {websiteError}
+                    </p>
+                  ) : null}
+                  <div className="mt-1 text-sm text-[#687281]">
+                    <span className="font-semibold block mb-1">Your audit will review:</span>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-1">
+                      <li>• CTA clarity</li>
+                      <li>• Trust & messaging</li>
+                      <li>• Mobile usability</li>
+                      <li>• Conversion structure</li>
+                      <li>• Website speed</li>
+                      <li>• Lead-gen opportunities</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-semibold text-[#f5f7fa]" htmlFor="contact-project-details">
+                    What's your biggest concern? <span className="text-[#687281] font-normal">(optional)</span>
+                  </label>
+                  <textarea
+                    className={textareaClassName}
+                    id="contact-project-details"
+                    name="projectDetails"
+                    placeholder="E.g. low enquiries, outdated design, slow website, poor mobile experience..."
+                    maxLength={2000}
+                    aria-invalid={Boolean(projectDetailsError)}
+                  />
+                  {projectDetailsError && (
+                    <p className="text-sm text-[#ff9b9b]">{projectDetailsError}</p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="grid gap-4 mt-2">
-            <button
-              type="submit"
-              className="form-submit-button flex items-center justify-center gap-2"
-              disabled={pending}
-            >
-              [ Send Enquiry → ]
-            </button>
-          </div>
+          <button
+            className="form-submit-button"
+            type="submit"
+            disabled={!available || pending}
+          >
+            {pending ? "Sending…" : submitLabel}
+          </button>
         </fieldset>
 
         {!available && state.status !== "success" ? (
