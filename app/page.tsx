@@ -14,18 +14,11 @@ import {
   pricing,
   primaryService,
   problems,
-  projects,
   siteIdentity,
   videoProof,
   whyCodeAuxPillars,
 } from "@/src/data/site";
 import { getRequestSiteUrl } from "@/src/lib/site-url";
-
-const projectArtLabels = {
-  interface: ["Message", "Hierarchy", "Action"],
-  editorial: ["Positioning", "Proof", "Enquiry"],
-  conversion: ["Attention", "Trust", "Conversion"],
-} as const;
 
 function getWhatsappHref() {
   const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
@@ -255,104 +248,9 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="work-section section-pad" id="work">
-          <div className="section-index">
-            <span>02</span>
-            <span>Selected work system</span>
-          </div>
-          <Reveal className="work-heading section-heading">
-            <p className="section-kicker">Proof belongs in the foreground</p>
-            <h2>
-              Large stories. Little noise.{" "}
-              <em>Real evidence goes here.</em>
-            </h2>
-            <p>
-              The complete showcase is ready for verified screenshots and
-              outcomes. Every current slot is intentionally marked as demo
-              content.
-            </p>
-          </Reveal>
-
-          <div className="project-stack">
-            {projects.map((project, index) => {
-              const placeholder = project.status === "placeholder";
-              const labels = placeholder
-                ? projectArtLabels[project.artDirection]
-                : ["Problem", "Strategy", "Result"];
-              const image = placeholder ? null : project.projectImage;
-
-              return (
-                <article
-                  className="project-story"
-                  key={project.id}
-                  data-analytics-event="portfolio_interaction"
-                  data-analytics-project={project.id}
-                >
-                  <div className="project-meta">
-                    <p>PROJECT / {String(index + 1).padStart(2, "0")}</p>
-                    <h3>
-                      {placeholder ? `Project slot 0${index + 1}` : project.title}
-                    </h3>
-                    <span>
-                      {placeholder
-                        ? "Awaiting verified client content"
-                        : project.category}
-                    </span>
-                  </div>
-                  <div
-                    className={`project-media project-media--${
-                      placeholder ? project.artDirection : "published"
-                    }`}
-                  >
-                    {image ? (
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="(max-width: 900px) 100vw, 76vw"
-                      />
-                    ) : (
-                      <div className="project-placeholder-art" aria-hidden="true">
-                        <div className="placeholder-window">
-                          <span />
-                          <span />
-                          <span />
-                        </div>
-                        <div className="placeholder-copy">
-                          <strong>{labels[0]}</strong>
-                          <i />
-                          <i />
-                        </div>
-                        <div className="placeholder-path">
-                          {labels.map((label) => (
-                            <span key={label}>{label}</span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {placeholder ? (
-                      <p className="demo-label">
-                        Demo content · Replace before public launch
-                      </p>
-                    ) : null}
-                  </div>
-                  <div className="project-outcome">
-                    <span>OUTCOME</span>
-                    <p>
-                      {placeholder
-                        ? "Verified project outcome will be added here."
-                        : project.shortOutcome}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
         <section className="services-section section-pad" id="services">
           <div className="section-index">
-            <span>03</span>
+            <span>02</span>
             <span>What we build</span>
           </div>
           <div className="primary-service">
@@ -433,21 +331,27 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="proof-section section-pad">
+        <section className="proof-section section-pad" id="work-proof">
           <div className="section-index">
             <span>06</span>
             <span>Work proof</span>
           </div>
           <Reveal className="section-heading proof-heading">
-            <p className="section-kicker">Show, then tell</p>
-            <h2>
-              Proof should be seen,{" "}
-              <em>not manufactured.</em>
-            </h2>
-            <p>
-              These media and review cards are fully built and clearly labeled
-              until verified client videos and words replace them.
-            </p>
+            <div className="proof-heading__copy">
+              <p className="section-kicker">Show, then tell</p>
+              <h2>
+                Proof should be seen,{" "}
+                <em>not manufactured.</em>
+              </h2>
+              <p>
+                These media and review cards are fully built and clearly labeled
+                until verified client videos and words replace them.
+              </p>
+            </div>
+            <a className="proof-detail-link" href="/projects">
+              <span>Know everything in detail</span>
+              <span aria-hidden="true">→</span>
+            </a>
           </Reveal>
           <div className="video-proof-grid">
             {videoProof.map((proof, index) => {
@@ -508,6 +412,15 @@ export default async function Home() {
                         ? "Verified name · Business · Role"
                         : `${proof.clientName} · ${proof.business} · ${proof.role}`}
                     </p>
+                    <a
+                      className="video-proof-card__link"
+                      href="/projects"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>Know more</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
                     {proof.status === "published" ? (
                       <details>
                         <summary>Video transcript</summary>
@@ -548,6 +461,12 @@ export default async function Home() {
               afterLabel="After demo"
             />
           </div>
+          <div className="proof-case-studies-cta">
+            <a className="proof-detail-link" href="/projects">
+              <span>View all case studies</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </section>
 
 
@@ -566,14 +485,42 @@ export default async function Home() {
           </Reveal>
           <div className="pricing-grid">
             {pricing.map((option, index) => (
-              <article key={option.id}>
-                <span>0{index + 1}</span>
+              <article className={`pricing-grid__tier--${index + 1}`} key={option.id}>
+                {"isMostComprehensive" in option && option.isMostComprehensive ? (
+                  <span className="pricing-grid__comprehensive">
+                    Most comprehensive
+                  </span>
+                ) : null}
+                <div className="pricing-grid__meta">
+                  <p className="pricing-grid__eyebrow">
+                    <span>{option.eyebrow}</span>
+                  </p>
+                  <div
+                    className="pricing-grid__scope-meter"
+                    aria-label={`Scope level ${index + 1} of 3`}
+                  >
+                    {Array.from({ length: index + 1 }, (_, meterIndex) => (
+                      <span aria-hidden="true" key={meterIndex} />
+                    ))}
+                  </div>
+                </div>
                 <h3>{option.title}</h3>
-                <strong>{option.price.label}</strong>
+                <strong>{option.headline}</strong>
                 <p>{option.description}</p>
-                <a href="#contact">
-                  Request a quote <span aria-hidden="true">↗</span>
-                </a>
+                <p className="pricing-grid__best-for">
+                  <span>Best for</span>
+                  {option.bestFor}
+                </p>
+                <ul>
+                  {option.services.map((service) => (
+                    <li key={service}>{service}</li>
+                  ))}
+                </ul>
+                <div className="pricing-grid__cta">
+                  <a href="#contact">
+                    Request a Quote <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
               </article>
             ))}
           </div>

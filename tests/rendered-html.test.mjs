@@ -69,11 +69,22 @@ test("server-renders the finished CodeAux homepage", async () => {
   const html = await response.text();
   assert.match(html, /<title>CodeAux — Revenue-Focused Website Design &amp; Development<\/title>/i);
   assert.match(html, /We build/i);
-  assert.match(html, /Demo content · Replace before public launch/i);
+  assert.doesNotMatch(html, /Demo content · Replace before public launch/i);
   assert.match(html, /Free website audit/i);
   assert.match(html, /Website projects from ₹50,000/i);
   assert.match(html, /rel="canonical" href="https:\/\/codeaux\.example\/?"/i);
   assert.doesNotMatch(html, /Building your site|Your site is taking shape|react-loading-skeleton/i);
+});
+
+test("server-renders project case studies on their dedicated page", async () => {
+  const response = await render("/projects");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Case studies built to show the thinking/i);
+  assert.match(html, /Demo content · Replace before public launch/i);
+  assert.match(html, /Project slot 05/i);
+  assert.match(html, /rel="canonical" href="https:\/\/codeaux\.example\/projects"/i);
 });
 
 test("removes the disposable starter and retains production metadata assets", async () => {

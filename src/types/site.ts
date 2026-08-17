@@ -1,6 +1,8 @@
 export type SiteAnchor =
   | "#top"
   | "#services"
+  | "#case-studies"
+  | "#work-proof"
   | "#contact"
   | "#work"
   | "#audit";
@@ -170,7 +172,11 @@ export type PricingDisplay =
 
 export interface PricingOption {
   id: string;
+  eyebrow: string;
   title: string;
-  price: PricingDisplay;
+  headline: string;
   description: string;
+  bestFor: string;
+  isMostComprehensive?: boolean;
+  services: readonly string[];
 }

@@ -39,12 +39,14 @@ describe("site content states", () => {
     }
   });
 
-  it("retains the approved entry price", () => {
-    expect(pricing[0].price).toMatchObject({
-      kind: "from",
-      currency: "INR",
-      amount: 50_000,
-    });
+  it("defines the three service tiers without pricing", () => {
+    expect(pricing.map((tier) => tier.title)).toEqual([
+      "Professional Presence",
+      "Lead-Driven Websites",
+      "Entire Growth Systems",
+    ]);
+    expect(pricing.every((tier) => tier.services.length > 0)).toBe(true);
+    expect(pricing.every((tier) => !("price" in tier))).toBe(true);
   });
 });
 

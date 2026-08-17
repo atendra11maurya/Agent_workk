@@ -28,6 +28,7 @@ export const siteIdentity = {
 export const navigation = [
   { label: "Home", href: "#top" },
   { label: "Services", href: "#services" },
+  { label: "Projects", href: "#work-proof" },
   { label: "Contact", href: "#contact" },
 ] as const satisfies readonly NavigationItem[];
 
@@ -87,78 +88,73 @@ export const primaryService = {
   description:
     "CodeAux starts with the commercial problem, then designs and develops a website around the people, decisions and actions that move the business forward.",
   discoveryTitle: "Before design or code, we understand:",
-  discoveryPoints: [
-    "The business",
-    "Its customers",
-    "Its goals",
-    "The conversion path",
-    "The offer",
-    "Credibility gaps",
-  ],
-  deliverables: [
-    "Strategy",
-    "Custom UI/UX",
-    "Responsive development",
-    "Mobile optimization",
-    "Performance optimization",
-    "SEO foundations",
-    "Analytics setup",
-    "Deployment",
-    "Post-launch support",
-    "Lead-generation improvement",
-  ],
+  discoveryPoints: ["The business", "Its customers", "Its goals", "The conversion path", "The offer", "Credibility gaps"],
+  deliverables: ["Strategy", "Custom UI/UX", "Responsive development", "Mobile optimization", "Performance optimization", "SEO foundations", "Analytics setup", "Deployment", "Post-launch support", "Lead-generation improvement"],
 } as const satisfies PrimaryService;
 
 export const additionalServices = [
-  {
-    id: "website-redesign",
-    title: "Website Redesign",
-    description: "For companies with outdated or ineffective websites.",
-    priority: "supporting",
-  },
-  {
-    id: "landing-pages",
-    title: "Landing Pages",
-    description: "For advertising campaigns, launches and focused offers.",
-    priority: "supporting",
-  },
-  {
-    id: "e-commerce",
-    title: "E-commerce",
-    description: "For businesses selling online.",
-    priority: "supporting",
-  },
-  {
-    id: "portfolio-websites",
-    title: "Portfolio Websites",
-    description: "For professionals and personal brands.",
-    priority: "supporting",
-  },
-  {
-    id: "website-maintenance",
-    title: "Website Maintenance",
-    description: "For ongoing updates and technical support.",
-    priority: "supporting",
-  },
-  {
-    id: "seo-foundations",
-    title: "SEO Foundations",
-    description: "Technical and on-page foundations needed for discoverability.",
-    priority: "supporting",
-  },
-  {
-    id: "analytics-setup",
-    title: "Analytics Setup",
-    description: "Measurement for important website actions.",
-    priority: "supporting",
-  },
-  {
-    id: "hosting-deployment",
-    title: "Hosting & Deployment",
-    description: "Production setup and deployment.",
-    priority: "supporting",
-  },
+  { id: "website-redesign", title: "Website Redesign", description: "For companies with outdated or ineffective websites.", priority: "supporting" },
+  { id: "landing-pages", title: "Landing Pages", description: "For advertising campaigns, launches and focused offers.", priority: "supporting" },
+  { id: "e-commerce", title: "E-commerce", description: "For businesses selling online.", priority: "supporting" },
+  { id: "portfolio-websites", title: "Portfolio Websites", description: "For professionals and personal brands.", priority: "supporting" },
+  { id: "website-maintenance", title: "Website Maintenance", description: "For ongoing updates and technical support.", priority: "supporting" },
+  { id: "seo-foundations", title: "SEO Foundations", description: "Technical and on-page foundations needed for discoverability.", priority: "supporting" },
+  { id: "analytics-setup", title: "Analytics Setup", description: "Measurement for important website actions.", priority: "supporting" },
+  { id: "hosting-deployment", title: "Hosting & Deployment", description: "Production setup and deployment.", priority: "supporting" },
 ] as const satisfies readonly AdditionalService[];
+
+export const pricing = [
+  {
+    id: "professional-presence",
+    eyebrow: "Essential",
+    title: "Professional Presence",
+    headline: "Look credible. Make the positive first impression.",
+    description:
+      "Premium websites for professionals and businesses that need a polished, trustworthy digital presence.",
+    bestFor: "Professionals and small businesses",
+    services: [
+      "Landing pages & business websites",
+      "Professional & personal portfolios",
+      "Mobile-first premium design",
+      "Fast, responsive development",
+      "Clear messaging & strong credibility",
+    ],
+  },
+  {
+    id: "lead-driven-websites",
+    eyebrow: "Growth",
+    title: "Lead-Driven Websites",
+    headline: "Turn your website into a customer-generation asset.",
+    description:
+      "Conversion-focused websites designed around getting more bookings, enquiries, leads and sales—not simply looking good.",
+    bestFor: "Businesses seeking more customers",
+    services: [
+      "Conversion-focused UX & structure",
+      "Lead and booking funnels",
+      "Strategic calls-to-action",
+      "Analytics & conversion tracking",
+      "Performance and conversion optimization",
+    ],
+  },
+  {
+    id: "entire-growth-systems",
+    eyebrow: "Business System",
+    title: "Entire Growth Systems",
+    headline: "Get more customers. Keep them longer. Sell them more.",
+    description:
+      "Beyond the website, we build digital systems that help businesses acquire customers, improve follow-ups, increase retention and generate more value from existing customers.",
+    bestFor: "Businesses improving acquisition and retention.",
+    isMostComprehensive: true,
+    services: [
+      "Customer acquisition systems",
+      "CRM & lead management",
+      "Automated follow-ups",
+      "Customer retention systems",
+      "Upselling & repeat-sales strategies",
+      "Email & WhatsApp automation",
+    ],
+  },
+] as const satisfies readonly PricingOption[];
 
 export const whyCodeAuxPillars = [
   {
@@ -356,33 +352,6 @@ export const videoProof: readonly VideoProofRecord[] = [
     requiredContent: videoProofRequirements,
   },
 ];
-
-export const pricing = [
-  {
-    id: "revenue-website",
-    title: "Revenue Website",
-    price: {
-      kind: "from",
-      currency: "INR",
-      amount: 50_000,
-      label: "From ₹50,000",
-    },
-    description: "For service businesses, professionals and growing companies.",
-  },
-  {
-    id: "growth-website",
-    title: "Growth Website",
-    price: { kind: "custom", label: "Custom scope" },
-    description:
-      "For larger websites requiring deeper conversion strategy, integrations or advanced functionality.",
-  },
-  {
-    id: "ecommerce-custom",
-    title: "E-commerce / Custom Build",
-    price: { kind: "custom", label: "Custom quote" },
-    description: "For stores and technically complex projects.",
-  },
-] as const satisfies readonly PricingOption[];
 
 export const testimonials: readonly PublishedTestimonial[] = [];
 
