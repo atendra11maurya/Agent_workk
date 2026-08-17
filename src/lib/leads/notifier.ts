@@ -25,8 +25,17 @@ export function buildLeadNotification(
     `Phone / WhatsApp: ${lead.phone}`,
   ];
 
+  if (lead.intent) {
+    const intentLabel = lead.intent === "build" ? "Build a new website" : lead.intent === "redesign" ? "Redesign existing website" : "Free website audit";
+    lines.push(`Intent: ${intentLabel}`);
+  }
+
   if (lead.websiteUrl) {
     lines.push(`Website: ${lead.websiteUrl}`);
+  }
+
+  if (lead.projectDetails) {
+    lines.push(`\nDetails:\n${lead.projectDetails}\n`);
   }
 
   lines.push(`Source: ${lead.sourcePath}`, `Lead ID: ${lead.id}`);

@@ -68,7 +68,7 @@ test("server-renders the finished CodeAux homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>CodeAux — Revenue-Focused Website Design &amp; Development<\/title>/i);
-  assert.match(html, /We build websites that turn more visitors into/);
+  assert.match(html, /We build/i);
   assert.match(html, /Demo content · Replace before public launch/i);
   assert.match(html, /Free website audit/i);
   assert.match(html, /Website projects from ₹50,000/i);

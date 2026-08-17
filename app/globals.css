@@ -3065,3 +3065,229 @@ html.has-custom-cursor button {
     display: none;
   }
 }
+
+/* ==========================================================================
+   UNIFIED CONVERSION SECTION
+   ========================================================================== */
+
+.unified-cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(80px, 10vw, 160px);
+  padding-bottom: clamp(80px, 10vw, 160px);
+  background: var(--blue);
+}
+
+.unified-cta-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+  color: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.unified-cta-intro .eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+}
+
+.unified-cta-intro .eyebrow > span {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.unified-cta-intro h2 {
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+
+.unified-cta-intro p {
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.conversion-box {
+  width: 100%;
+  max-width: 960px;
+  background: #0b0e13;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: clamp(32px, 5vw, 56px);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  color: #f5f7fa;
+}
+
+.conversion-box__direct {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conversion-micro-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #aeb6c2;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.conversion-direct-support {
+  font-size: 16px;
+  color: #f5f7fa;
+  margin-bottom: 32px;
+}
+
+.conversion-direct-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+.conversion-direct-actions .button {
+  flex: 1;
+  max-width: 320px;
+  min-height: 64px;
+  font-size: 16px;
+}
+
+.button-whatsapp {
+  background: #f5f7fa;
+  color: #050608;
+}
+
+.button-whatsapp:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+}
+
+.button-call {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f7fa;
+}
+
+.button-call:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.conversion-direct-trust {
+  font-size: 14px;
+  color: #687281;
+}
+
+.conversion-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 48px 0;
+  color: #3b4251;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.conversion-divider::before,
+.conversion-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.conversion-divider span {
+  padding: 0 16px;
+}
+
+.intent-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.intent-pill {
+  flex: 1;
+  min-width: 200px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
+  color: #aeb6c2;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.intent-pill:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #f5f7fa;
+}
+
+.intent-pill.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(47, 107, 255, 0.3);
+}
+
+.intent-fade-in {
+  animation: intentFade 0.3s ease forwards;
+}
+
+@keyframes intentFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-submit-button {
+  width: 100%;
+  min-height: 64px;
+  border-radius: 16px;
+  background: var(--blue);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-submit-button:hover:not(:disabled) {
+  background: #477cff;
+  box-shadow: 0 10px 20px rgba(47, 107, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.form-submit-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .conversion-direct-actions {
+    flex-direction: column;
+  }
+  .conversion-direct-actions .button {
+    max-width: 100%;
+  }
+  .intent-pill {
+    min-width: 100%;
+  }
+}
+

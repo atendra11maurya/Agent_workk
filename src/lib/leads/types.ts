@@ -3,6 +3,8 @@ export type LeadKind = "contact" | "audit";
 export type LeadSubmission = {
   submissionId: string;
   kind: LeadKind;
+  intent?: "build" | "redesign" | "audit";
+  projectDetails?: string;
   name: string;
   email: string;
   phone: string;
@@ -14,7 +16,7 @@ export type StoredLead = LeadSubmission & {
   id: string;
 };
 
-export type LeadFieldName = "name" | "email" | "phone" | "websiteUrl";
+export type LeadFieldName = "name" | "email" | "phone" | "websiteUrl" | "intent" | "projectDetails";
 
 export type LeadFieldErrors = Partial<Record<LeadFieldName, string[]>>;
 

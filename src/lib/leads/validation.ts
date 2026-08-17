@@ -12,6 +12,8 @@ const publicFields = new Set<LeadFieldName>([
   "email",
   "phone",
   "websiteUrl",
+  "intent",
+  "projectDetails",
 ]);
 
 function normalizeWebsiteUrl(value: unknown) {
@@ -72,6 +74,14 @@ const websiteUrlSchema = z.preprocess(
     }, "Use an http or https website URL."),
 );
 
+const intentSchema = z.enum(["build", "redesign", "audit"]);
+
+const projectDetailsSchema = z
+  .string()
+  .trim()
+  .max(2000, "Please keep your details under 2000 characters.")
+  .optional();
+
 const sourcePathSchema = z.preprocess(
   (value) => (typeof value === "string" && value.trim() ? value.trim() : "/"),
   z
@@ -87,6 +97,8 @@ const baseSchema = z.object({
   name: nameSchema,
   email: emailSchema,
   phone: phoneSchema,
+  intent: intentSchema.optional(),
+  projectDetails: projectDetailsSchema,
   sourcePath: sourcePathSchema,
 });
 
@@ -130,8 +142,10 @@ export function validateLeadFormData(formData: FormData): LeadValidationResult {
     name: formValue(formData, "name"),
     email: formValue(formData, "email"),
     phone: formValue(formData, "phone"),
+    intent: formValue(formData, "intent") as any,
+    projectDetails: formValue(formData, "projectDetails"),
     websiteUrl:
-      kind === "audit" ? formValue(formData, "websiteUrl") : undefined,
+      kind === "audit" || formValue(formData, "intent") === "redesign" ? formValue(formData, "websiteUrl") : undefined,
     sourcePath: formValue(formData, "sourcePath"),
   });
 

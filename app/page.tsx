@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import Analytics from "@/app/components/Analytics";
 import BeforeAfter from "@/app/components/BeforeAfter";
 import ConnectsProgress from "@/app/components/ConnectsProgress";
-import { LeadForm } from "@/app/components/LeadForm";
+import { ConversionSection } from "@/app/components/ConversionSection";
 import MotionLayer, { Magnetic, Reveal } from "@/app/components/MotionLayer";
 import SiteChrome from "@/app/components/SiteChrome";
 import {
@@ -550,42 +550,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="audit-section section-pad" id="audit">
-          <div className="audit-copy">
-            <p className="section-kicker">Free website audit</p>
-            <h2>Is your website costing you customers?</h2>
-            <p>
-              Get a practical review of your design, mobile experience,
-              messaging, performance and conversion structure.
-            </p>
-            <ul>
-              {[
-                "CTA clarity",
-                "Mobile usability",
-                "Website speed",
-                "Trust and messaging",
-                "Conversion structure",
-                "Lead-generation opportunities",
-              ].map((item) => (
-                <li key={item}>
-                  <span aria-hidden="true">↗</span> {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="audit-form-shell">
-            <div className="form-topline">
-              <span>AUDIT REQUEST</span>
-              <span>NO COST / NO OBLIGATION</span>
-            </div>
-            <LeadForm
-              kind="audit"
-              sourcePath="/#audit"
-              available={leadCaptureAvailable}
-              className="lead-form"
-            />
-          </div>
-        </section>
+
 
         <section className="pricing-section section-pad">
           <div className="section-index">
@@ -614,54 +579,20 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="final-cta section-pad">
-          <div className="final-rail" aria-hidden="true">
-            <span>ATTENTION</span>
-            <span>CLARITY</span>
-            <span>TRUST</span>
-            <span>ACTION</span>
-          </div>
-          <h2>Your website should be generating business.</h2>
-          <p>
-            Tell us what you&apos;re trying to achieve. We&apos;ll show you how
-            a better website can help.
-          </p>
-          <div className="hero-actions">
-            <Magnetic>
-              <a
-                className="button button-dark"
-                href={bookingHref}
-                data-analytics-event="book_call_click"
-                data-analytics-placement="final_cta"
-                {...(bookingUrl
-                  ? { target: "_blank", rel: "noreferrer" }
-                  : {})}
-              >
-                Book a Call <span aria-hidden="true">↗</span>
-              </a>
-            </Magnetic>
-            {whatsappHref ? (
-              <a
-                className="button button-light-outline"
-                href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                data-analytics-event="whatsapp_click"
-                data-analytics-placement="final_cta"
-              >
-                WhatsApp Us
-              </a>
-            ) : (
-              <a
-                className="button button-light-outline"
-                href="#audit"
-                data-analytics-event="website_audit_click"
-                data-analytics-placement="final_cta"
-              >
-                Get a Free Audit
-              </a>
-            )}
-          </div>
+        <section id="contact" className="unified-cta-section section-pad">
+          <Reveal className="unified-cta-intro">
+            <span className="eyebrow">
+              <span aria-hidden="true" /> START A CONVERSATION
+            </span>
+            <h2>Ready to build a website that works for your business?</h2>
+            <p>Start a conversation directly, or send us your requirements and we'll get back to you.</p>
+          </Reveal>
+          <ConversionSection
+            whatsappHref={whatsappHref}
+            contactEmailHref={contactEmailHref}
+            phoneNumber={process.env.NEXT_PUBLIC_CONTACT_PHONE}
+            available={leadCaptureAvailable}
+          />
         </section>
 
       </main>
