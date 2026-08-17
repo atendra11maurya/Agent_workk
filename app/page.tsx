@@ -365,14 +365,6 @@ export default async function Home() {
                   ))}
                 </ol>
               </div>
-              <div className="deliverables-panel">
-                <p>Then we deliver the complete system:</p>
-                <div>
-                  {primaryService.deliverables.map((deliverable) => (
-                    <span key={deliverable}>{deliverable}</span>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 
