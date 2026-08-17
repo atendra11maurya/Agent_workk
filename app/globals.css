@@ -3111,8 +3111,9 @@ html.has-custom-cursor button {
 }
 
 .unified-cta-intro p {
-  font-size: clamp(16px, 1.5vw, 18px);
-  color: rgba(5, 6, 8, 0.7);
+  font-size: clamp(18px, 2vw, 22px);
+  color: rgba(5, 6, 8, 0.85);
+  font-weight: 500;
 }
 
 .conversion-box {
