@@ -590,6 +590,30 @@ export default async function Home() {
             </h2>
             <p>Start a conversation directly, or send us your requirements and we'll get back to you.</p>
           </Reveal>
+
+          <Reveal className="massive-contact-buttons" delay={0.1}>
+            <a 
+              href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE?.replace(/\D/g, "") || ""}`} 
+              className="massive-button massive-button--call"
+              data-analytics-event="call_click"
+              data-analytics-placement="massive_button"
+            >
+              <span className="massive-button-icon">📞</span>
+              Call Us Directly
+            </a>
+            <a 
+              href={whatsappHref || "#"} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="massive-button massive-button--wa"
+              data-analytics-event="whatsapp_click"
+              data-analytics-placement="massive_button"
+            >
+              <span className="massive-button-icon">💬</span>
+              WhatsApp Inquiry
+            </a>
+          </Reveal>
+
           <ConversionSection
             whatsappHref={whatsappHref}
             contactEmailHref={contactEmailHref}

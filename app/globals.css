@@ -3295,3 +3295,61 @@ html.has-custom-cursor button {
   }
 }
 
+
+.massive-contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 64px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .massive-contact-buttons {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.massive-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  border-radius: 40px;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff;
+}
+
+.massive-button-icon {
+  font-size: 28px;
+}
+
+.massive-button--call {
+  background: var(--blue);
+  box-shadow: 0 20px 40px rgba(47, 107, 255, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.massive-button--call:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(47, 107, 255, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.massive-button--wa {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  box-shadow: 0 20px 40px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.massive-button--wa:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(37, 211, 102, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
