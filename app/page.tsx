@@ -588,7 +588,7 @@ export default async function Home() {
               Ready to build a website<br />
               <em>that works for your business?</em>
             </h2>
-            <p>Start a conversation directly, or send us your requirements and we'll get back to you.</p>
+            <p>Start a conversation directly.</p>
           </Reveal>
 
           <Reveal className="massive-contact-buttons" delay={0.1}>
