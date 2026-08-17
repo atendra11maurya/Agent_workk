@@ -622,6 +622,12 @@ export default async function Home() {
             </a>
           </Reveal>
 
+          <Reveal delay={0.2} className="flex items-center w-full max-w-[960px] mx-auto mb-[40px] text-[#687281] text-[11px] font-bold tracking-[0.15em] uppercase">
+            <div className="flex-1 border-b border-[#050608]/10" aria-hidden="true" />
+            <span className="px-6">OR</span>
+            <div className="flex-1 border-b border-[#050608]/10" aria-hidden="true" />
+          </Reveal>
+
           <ConversionSection
             whatsappHref={whatsappHref}
             contactEmailHref={contactEmailHref}
