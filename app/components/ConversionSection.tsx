@@ -126,55 +126,6 @@ export function ConversionSection({
 
   return (
     <div className={`conversion-box ${className}`.trim()}>
-      <div className="conversion-box__direct">
-        <span className="conversion-micro-label">TALK TO US DIRECTLY</span>
-        <p className="conversion-direct-support">
-          Have a project in mind? Skip the form and talk to us directly.
-        </p>
-
-        <div className="conversion-direct-actions">
-          {whatsappHref && (
-            <a
-              className="button button-whatsapp"
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              data-analytics-event="whatsapp_click"
-              data-analytics-placement="contact_section"
-            >
-              WhatsApp Us →
-            </a>
-          )}
-          {phoneNumber && (
-            <a
-              className="button button-call"
-              href={`tel:${phoneNumber.replace(/\D/g, "")}`}
-              data-analytics-event="call_click"
-              data-analytics-placement="contact_section"
-            >
-              Call Us ↗
-            </a>
-          )}
-          {!phoneNumber && contactEmailHref && (
-            <a
-              className="button button-call"
-              href={contactEmailHref}
-              data-analytics-event="email_click"
-              data-analytics-placement="contact_section"
-            >
-              Email Us ↗
-            </a>
-          )}
-        </div>
-
-        <p className="conversion-direct-trust">
-          No sales pressure. Just tell us what you're trying to build.
-        </p>
-      </div>
-
-      <div className="conversion-divider" aria-hidden="true">
-        <span>OR SEND YOUR REQUIREMENTS</span>
-      </div>
 
       <form
         ref={formRef}
@@ -460,12 +411,6 @@ export function ConversionSection({
             {pending ? "Sending…" : submitLabel}
           </button>
         </fieldset>
-
-        {!available && state.status !== "success" ? (
-          <div className="mt-4 rounded-xl border border-amber-300/25 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100 text-center">
-            {unavailableMessage}
-          </div>
-        ) : null}
 
         <div
           ref={statusRef}
