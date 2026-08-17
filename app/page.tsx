@@ -622,10 +622,16 @@ export default async function Home() {
             </a>
           </Reveal>
 
-          <Reveal delay={0.2} className="flex items-center w-full max-w-[960px] mx-auto mb-[40px] text-[#687281] text-[22px] font-bold tracking-[0.15em] uppercase">
+          <Reveal delay={0.2} className="flex items-center w-full max-w-[960px] mx-auto mb-[24px] text-[#687281] text-[22px] font-bold tracking-[0.15em] uppercase">
             <div className="flex-1 border-b border-[#050608]/10" aria-hidden="true" />
             <span className="px-6">OR</span>
             <div className="flex-1 border-b border-[#050608]/10" aria-hidden="true" />
+          </Reveal>
+
+          <Reveal delay={0.3} className="text-center mb-[40px]">
+            <p className="text-[clamp(16px,1.5vw,18px)] text-[#050608]/70 font-medium">
+              Send us your requirements and we'll get back to you.
+            </p>
           </Reveal>
 
           <ConversionSection
