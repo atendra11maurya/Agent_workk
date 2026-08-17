@@ -768,15 +768,14 @@ h1 em {
   border-top: 1px solid var(--line);
 }
 
-.capability-strip {
+.credibility-strip {
   position: relative;
   isolation: isolate;
-  min-height: 116px;
+  min-height: 94px;
   border-top: 1px dashed var(--blue);
   border-bottom: 1px dashed var(--blue);
   background:
-    radial-gradient(circle at 10% 50%, rgba(47, 107, 255, 0.12), transparent 24%),
-    radial-gradient(circle at 88% 50%, rgba(47, 107, 255, 0.08), transparent 22%),
+    radial-gradient(circle at 50% 50%, rgba(47, 107, 255, 0.06), transparent 52%),
     linear-gradient(105deg, #ffffff 0%, #f4f6fa 54%, #eaf0ff 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
@@ -789,7 +788,7 @@ h1 em {
   overflow: hidden;
 }
 
-.capability-strip::before {
+.credibility-strip::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -800,22 +799,43 @@ h1 em {
   mask-image: linear-gradient(90deg, transparent, black 16%, black 84%, transparent);
 }
 
-.capability-strip__track {
+.credibility-strip__viewport {
+  position: relative;
+  min-height: 92px;
+  overflow: hidden;
+  z-index: 2;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 104px,
+    #000 calc(100% - 104px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 104px,
+    #000 calc(100% - 104px),
+    transparent 100%
+  );
+}
+
+.credibility-strip__track {
   display: flex;
   width: max-content;
-  animation: capability-strip-marquee 28s linear infinite;
+  animation: credibility-strip-marquee 28s linear infinite;
   will-change: transform;
   position: relative;
   z-index: 1;
 }
 
-.capability-strip__group {
-  --marquee-gap: clamp(28px, 4vw, 72px);
+.credibility-strip__group {
+  --marquee-gap: clamp(42px, 5vw, 92px);
   counter-reset: capability;
   min-width: 100vw;
-  min-height: 116px;
+  min-height: 92px;
   width: max-content;
-  padding: 24px calc(var(--marquee-gap) / 2);
+  padding: 16px calc(var(--marquee-gap) / 2);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
@@ -823,38 +843,47 @@ h1 em {
   gap: var(--marquee-gap);
 }
 
-.capability-strip__group > span {
+.credibility-strip__group > span {
   position: relative;
   display: flex;
   align-items: center;
   gap: min(1.35vw, 20px);
-  padding: 10px 0;
+  padding: 8px 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.94);
   white-space: nowrap;
 }
 
-.capability-strip__group > span::after {
+.credibility-strip__group > span::after {
   content: counter(capability, decimal-leading-zero);
   counter-increment: capability;
-  margin-left: 2px;
-  color: rgba(23, 28, 37, 0.36);
-  font-size: 9px;
-  font-weight: 720;
-  letter-spacing: 0.08em;
+  margin-left: clamp(8px, 0.9vw, 14px);
+  color: rgba(23, 28, 37, 0.3);
+  font-size: 8px;
+  font-weight: 560;
+  letter-spacing: 0.1em;
 }
 
-.capability-strip i {
+.credibility-strip i {
   width: 7px;
   height: 7px;
   flex: 0 0 auto;
   border-radius: 50%;
   background: var(--blue);
-  box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.1);
+  animation: credibility-dot-breathe 3s ease-in-out infinite;
 }
 
-@keyframes capability-strip-marquee {
+@keyframes credibility-strip-marquee {
   to {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes credibility-dot-breathe {
+  50% {
+    opacity: 0.82;
+    box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.14);
+    transform: scale(0.96);
   }
 }
 
@@ -2535,12 +2564,35 @@ html.has-custom-cursor button {
     right: 20px;
   }
 
-  .capability-strip {
-    min-height: 96px;
+  .credibility-strip {
+    min-height: 88px;
   }
 
-  .capability-strip__group {
-    min-height: 96px;
+  .credibility-strip__viewport,
+  .credibility-strip__group {
+    min-height: 86px;
+  }
+
+  .credibility-strip__viewport {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 64px,
+      #000 calc(100% - 64px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 64px,
+      #000 calc(100% - 64px),
+      transparent 100%
+    );
+  }
+
+  .credibility-strip__group {
+    --marquee-gap: clamp(28px, 8vw, 52px);
+    padding-block: 12px;
   }
 
   .problem-grid {
@@ -2752,20 +2804,20 @@ html.has-custom-cursor button {
     position: static;
   }
 
-  .capability-strip__track {
+  .credibility-strip__track {
     width: 100%;
     animation: none !important;
     transform: none !important;
   }
 
-  .capability-strip__group {
+  .credibility-strip__group {
     width: 100%;
     min-width: 0;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .capability-strip__group[aria-hidden="true"] {
+  .credibility-strip__group[aria-hidden="true"] {
     display: none;
   }
 }

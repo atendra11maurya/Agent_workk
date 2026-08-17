@@ -194,22 +194,24 @@ export default async function Home() {
           </Reveal>
         </section>
 
-        <section className="capability-strip" aria-label="Capabilities">
-          <div className="capability-strip__track">
-            {[false, true].map((isDuplicate) => (
-              <div
-                className="capability-strip__group"
-                aria-hidden={isDuplicate || undefined}
-                key={isDuplicate ? "duplicate" : "primary"}
-              >
-                {capabilities.map((capability) => (
-                  <span key={capability}>
-                    <i aria-hidden="true" />
-                    {capability}
-                  </span>
-                ))}
-              </div>
-            ))}
+        <section className="credibility-strip" aria-label="Capabilities">
+          <div className="credibility-strip__viewport">
+            <div className="credibility-strip__track">
+              {[false, true].map((isDuplicate) => (
+                <div
+                  className="credibility-strip__group"
+                  aria-hidden={isDuplicate || undefined}
+                  key={isDuplicate ? "duplicate" : "primary"}
+                >
+                  {capabilities.map((capability) => (
+                    <span key={capability}>
+                      <i aria-hidden="true" />
+                      {capability}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
