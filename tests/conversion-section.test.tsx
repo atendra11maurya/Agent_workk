@@ -33,18 +33,13 @@ describe("ConversionSection", () => {
     expect(screen.getByLabelText("Name")).toBeRequired();
     expect(screen.getByLabelText("Email")).toHaveAttribute("type", "email");
     
-    // Default is build
-    expect(screen.getByLabelText(/Tell us briefly what you're looking to build/i)).toBeInTheDocument();
-    expect(screen.queryByLabelText(/Current Website URL/i)).not.toBeInTheDocument();
+    expect(screen.getByLabelText(/Build a website/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Website URL/i)).toBeInTheDocument();
 
-    // Switch to redesign
-    await user.click(screen.getByRole("button", { name: "Redesign my website" }));
-    expect(screen.getByLabelText(/Current Website URL/i)).toBeRequired();
-    expect(screen.getByLabelText(/What would you like to improve?/i)).toBeInTheDocument();
+    await user.click(screen.getByLabelText(/Redesign my website/i));
+    expect(screen.getByLabelText(/Redesign my website/i)).toBeChecked();
 
-    // Switch to audit
-    await user.click(screen.getByRole("button", { name: "Free website audit" }));
-    expect(screen.getByLabelText(/Website URL/i)).toBeRequired();
-    expect(screen.getByLabelText(/What's your biggest concern\?/i)).toBeInTheDocument();
+    await user.click(screen.getByLabelText(/Free website audit/i));
+    expect(screen.getByLabelText(/Free website audit/i)).toBeChecked();
   });
 });
