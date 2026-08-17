@@ -414,9 +414,9 @@ export function ConversionSection({
 
         <div
           ref={statusRef}
-          className={`min-h-6 text-sm leading-6 mt-3 text-center ${
+          className={`text-sm leading-6 text-center ${
             state.status === "error" ? "text-[#ff9b9b]" : "text-[#a9c0ff]"
-          }`}
+          } ${pending || state.status !== "idle" ? "mt-4 min-h-6" : ""}`}
           role={state.status === "error" ? "alert" : "status"}
           aria-live={state.status === "error" ? "assertive" : "polite"}
           aria-atomic="true"
