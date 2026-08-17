@@ -16,7 +16,6 @@ import {
   problems,
   projects,
   siteIdentity,
-  socialLinks,
   videoProof,
   whyCodeAuxPillars,
 } from "@/src/data/site";
@@ -40,10 +39,19 @@ function getWhatsappHref() {
   )}`;
 }
 
+function getContactEmailHref() {
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
+
+  return email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ? `mailto:${email}`
+    : null;
+}
+
 export default async function Home() {
   const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || null;
   const bookingHref = bookingUrl || "#contact";
   const whatsappHref = getWhatsappHref();
+  const contactEmailHref = getContactEmailHref();
   const secondaryHref = whatsappHref || "#audit";
   const leadCaptureAvailable = Boolean(
     process.env.SUPABASE_URL && process.env.SUPABASE_SECRET_KEY,
@@ -660,7 +668,7 @@ export default async function Home() {
 
       <footer className="site-footer">
         <div className="footer-brand">
-          <a className="wordmark" href="#top">
+          <a className="wordmark" href="#top" aria-label="Back to the top of the CodeAux website">
             <Image
               className="site-logo site-logo--footer"
               src="/codeaux-logo.png"
@@ -672,33 +680,57 @@ export default async function Home() {
               <span className="footer-wordmark-code">Code</span><span className="footer-wordmark-aux">Aux</span>
             </span>
           </a>
+          <p>
+            Conversion-focused websites built to turn attention into leads,
+            bookings, and sales.
+          </p>
         </div>
-        <nav aria-label="Footer navigation">
-          {navigation.map((item) => (
-            <a href={item.href} key={item.href}>
-              {item.label}
-            </a>
-          ))}
-          <a href="#audit">Free Audit</a>
-          {whatsappHref ? (
-            <a href={whatsappHref} target="_blank" rel="noreferrer">
-              WhatsApp
-            </a>
+        <div className="footer-content">
+          <nav className="footer-group footer-navigation" aria-label="Footer navigation">
+            <p className="footer-label">Navigate</p>
+            <a href="#top">Home</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#audit">Free Audit</a>
+          </nav>
+          {whatsappHref || contactEmailHref ? (
+            <div className="footer-group footer-contact">
+              <p className="footer-label">Contact</p>
+              {whatsappHref ? (
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-analytics-event="whatsapp_click"
+                  data-analytics-placement="footer"
+                >
+                  WhatsApp
+                </a>
+              ) : null}
+              {contactEmailHref ? <a href={contactEmailHref}>Email</a> : null}
+            </div>
           ) : null}
-          {socialLinks.map((link) => (
+          <div className="footer-group footer-project">
+            <p className="footer-label">Start a project</p>
+            <p className="footer-project__prompt">
+              Not sure what&apos;s holding your website back?
+            </p>
             <a
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-              key={link.platform}
+              className="footer-audit-cta"
+              href="#audit"
+              data-analytics-event="website_audit_click"
+              data-analytics-placement="footer"
             >
-              {link.label}
+              Get a Free Website Audit <span aria-hidden="true">→</span>
             </a>
-          ))}
-        </nav>
+          </div>
+        </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} CodeAux</span>
+          <span>© 2026 CodeAux</span>
           <span>Built around business outcomes.</span>
+          <a className="footer-back-to-top" href="#top" aria-label="Back to top">
+            <span aria-hidden="true">↑</span>
+          </a>
         </div>
       </footer>
 
