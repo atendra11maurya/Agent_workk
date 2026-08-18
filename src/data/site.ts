@@ -369,15 +369,83 @@ export function isPublishedVideoProof(
   return proof.status === "published";
 }
 
+export const customerProblems = [
+  {
+    id: "no-contact",
+    title: "People visit, but don't contact you",
+    description: "Traffic may be reaching the website, but too few visitors become enquiries, calls, WhatsApp conversations, bookings, or purchases.",
+  },
+  {
+    id: "unclear-offer",
+    title: "Customers don't understand why they should choose you",
+    description: "The website fails to communicate clearly what the business does, who it serves, what makes it different, or why the visitor should trust it.",
+  },
+  {
+    id: "looks-small",
+    title: "Your website makes the business look smaller than it really is",
+    description: "Poor presentation, weak hierarchy, outdated design, or generic layouts can reduce perceived value before a potential customer ever speaks with the business.",
+  },
+  {
+    id: "mobile-friction",
+    title: "Mobile visitors face unnecessary friction",
+    description: "A large percentage of customers encounter the business through their phones. Awkward layouts, poor navigation, and badly positioned buttons cost you opportunities.",
+  },
+  {
+    id: "buried-next-step",
+    title: "The next step isn't obvious",
+    description: "The visitor shouldn't have to search for what to do next. Poor CTA placement creates unnecessary friction between interest and action.",
+  },
+  {
+    id: "isolated-brochure",
+    title: "The website exists, but doesn't support growth",
+    description: "Many websites function as isolated digital brochures instead of becoming part of the business's growth system for lead capture, follow-up, and repeat sales.",
+  },
+] as const;
+
+export const codeAuxSystemSteps = [
+  {
+    id: "understand",
+    title: "Understand the business",
+    description: "Before designing anything, we understand the business, target customers, goals, and desired actions to prevent designing blindly.",
+  },
+  {
+    id: "position",
+    title: "Clarify and position the offer",
+    description: "We make it immediately obvious what the business does, who it serves, and why someone should choose it.",
+  },
+  {
+    id: "trust",
+    title: "Build trust",
+    description: "We use premium presentation, strong typography, and credibility signals so the website makes the business feel as credible online as it actually is.",
+  },
+  {
+    id: "friction",
+    title: "Remove friction",
+    description: "We improve loading speed, mobile experience, navigation, and page flow to remove obstacles from the customer journey.",
+  },
+  {
+    id: "convert",
+    title: "Create clear conversion paths",
+    description: "CTAs are intentionally positioned so the customer always understands what the logical next step is (Call, WhatsApp, Book, Enquire).",
+  },
+  {
+    id: "improve",
+    title: "Build around growth",
+    description: "Where appropriate, we connect the website to broader systems for analytics, lead capture, CRM, and automation.",
+  },
+] as const;
+
 export const siteContent = {
   identity: siteIdentity,
   navigation,
   capabilities,
   problems,
+  customerProblems,
   primaryService,
   additionalServices,
   whyCodeAuxPillars,
   leadGenerationSteps,
+  codeAuxSystemSteps,
   projects,
   videoProof,
   testimonials,

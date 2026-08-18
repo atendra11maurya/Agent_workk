@@ -3,20 +3,17 @@ import Script from "next/script";
 import { headers } from "next/headers";
 import Analytics from "@/app/components/Analytics";
 import BeforeAfter from "@/app/components/BeforeAfter";
-import ConnectsProgress from "@/app/components/ConnectsProgress";
+import { CustomerProblems } from "@/app/components/CustomerProblems";
+import { CodeAuxSolution } from "@/app/components/CodeAuxSolution";
 import { ConversionSection } from "@/app/components/ConversionSection";
 import MotionLayer, { Magnetic, Reveal } from "@/app/components/MotionLayer";
 import SiteChrome from "@/app/components/SiteChrome";
 import {
   capabilities,
-  leadGenerationSteps,
   navigation,
   pricing,
-  primaryService,
-  problems,
   siteIdentity,
   videoProof,
-  whyCodeAuxPillars,
 } from "@/src/data/site";
 import { getRequestSiteUrl } from "@/src/lib/site-url";
 
@@ -216,120 +213,9 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="problem-section section-pad">
-          <div className="section-index">
-            <span>01</span>
-            <span>The business problem</span>
-          </div>
-          <Reveal className="problem-heading">
-            <p className="section-kicker">Beautiful isn&apos;t enough.</p>
-            <h2>
-              Your website shouldn&apos;t just exist.{" "}
-              <em>It should work for your business.</em>
-            </h2>
-          </Reveal>
-          <div className="problem-grid">
-            <div className="problem-statement">
-              <p>
-                A website can look finished and still leak opportunity. The
-                symptoms are usually visible in what customers cannot
-                understand, trust or do.
-              </p>
-              <ConnectsProgress />
-            </div>
-            <ol className="diagnosis-list">
-              {problems.slice(0, 6).map((problem, index) => (
-                <li key={problem.id}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <p>{problem.statement}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+        <CustomerProblems />
 
-        <section className="services-section section-pad" id="services">
-          <div className="section-index">
-            <span>02</span>
-            <span>What we build</span>
-          </div>
-          <div className="primary-service">
-            <Reveal className="primary-service__intro">
-              <p className="section-kicker">{primaryService.eyebrow}</p>
-              <h2>{primaryService.title}</h2>
-              <p>{primaryService.description}</p>
-            </Reveal>
-            <div className="service-system">
-              <div className="discovery-panel">
-                <p>{primaryService.discoveryTitle}</p>
-                <ol>
-                  {primaryService.discoveryPoints.map((point, index) => (
-                    <li key={point}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {point}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </div>
-
-        </section>
-
-        <section className="why-section section-pad">
-          <div className="section-index">
-            <span>04</span>
-            <span>How we think</span>
-          </div>
-          <Reveal className="section-heading why-heading">
-            <p className="section-kicker">Why CodeAux</p>
-            <h2>
-              The standard is simple:{" "}
-              <em>every decision needs a reason.</em>
-            </h2>
-          </Reveal>
-          <div className="principle-grid">
-            {whyCodeAuxPillars.map((pillar, index) => (
-              <article key={pillar.id}>
-                <span>0{index + 1}</span>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="lead-generation section-pad">
-          <div className="section-index">
-            <span>05</span>
-            <span>The conversion path</span>
-          </div>
-          <Reveal className="section-heading conversion-heading">
-            <p className="section-kicker">Better opportunities to convert</p>
-            <h2>
-              More clarity. Less friction.{" "}
-              <em>A stronger path to action.</em>
-            </h2>
-            <p>
-              Design cannot guarantee leads. It can make the path toward an
-              enquiry dramatically clearer, faster and easier to trust.
-            </p>
-          </Reveal>
-          <div className="conversion-path">
-            {leadGenerationSteps.slice(0, 5).map((step, index) => (
-              <article key={step.id}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </article>
-            ))}
-          </div>
-          <div className="conversion-details">
-            {leadGenerationSteps.slice(5).map((step) => (
-              <span key={step.id}>{step.title}</span>
-            ))}
-          </div>
-        </section>
+        <CodeAuxSolution />
 
         <section className="proof-section section-pad" id="work-proof">
           <div className="section-index">
