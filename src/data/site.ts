@@ -371,67 +371,141 @@ export function isPublishedVideoProof(
 
 export const customerProblems = [
   {
-    id: "no-contact",
-    title: "People visit, but don't contact you",
-    description: "Traffic may be reaching the website, but too few visitors become enquiries, calls, WhatsApp conversations, bookings, or purchases.",
+    id: "unclear-value",
+    title: "Unclear Value",
+    description: "Visitors don't immediately understand what the business offers or why they should choose it.",
+    consequence: "Potential customers leave before understanding the offer.",
   },
   {
-    id: "unclear-offer",
-    title: "Customers don't understand why they should choose you",
-    description: "The website fails to communicate clearly what the business does, who it serves, what makes it different, or why the visitor should trust it.",
+    id: "low-trust",
+    title: "Low Trust",
+    description: "The website doesn't communicate enough credibility, authority or professionalism.",
+    consequence: "Competitors feel like the safer choice.",
   },
   {
-    id: "looks-small",
-    title: "Your website makes the business look smaller than it really is",
-    description: "Poor presentation, weak hierarchy, outdated design, or generic layouts can reduce perceived value before a potential customer ever speaks with the business.",
+    id: "weak-conversion",
+    title: "Weak Conversion Path",
+    description: "Visitors browse the website but aren't deliberately guided toward contacting, booking or purchasing.",
+    consequence: "Traffic fails to become enquiries.",
   },
   {
     id: "mobile-friction",
-    title: "Mobile visitors face unnecessary friction",
-    description: "A large percentage of customers encounter the business through their phones. Awkward layouts, poor navigation, and badly positioned buttons cost you opportunities.",
+    title: "Mobile Friction",
+    description: "The website experience becomes frustrating, cramped or unclear on mobile devices.",
+    consequence: "High-intent mobile visitors abandon.",
   },
   {
-    id: "buried-next-step",
-    title: "The next step isn't obvious",
-    description: "The visitor shouldn't have to search for what to do next. Poor CTA placement creates unnecessary friction between interest and action.",
+    id: "slow-performance",
+    title: "Slow Performance",
+    description: "Pages, media or interactions take too long to load or respond.",
+    consequence: "Attention disappears before the offer lands.",
   },
   {
-    id: "isolated-brochure",
-    title: "The website exists, but doesn't support growth",
-    description: "Many websites function as isolated digital brochures instead of becoming part of the business's growth system for lead capture, follow-up, and repeat sales.",
+    id: "unclear-next-step",
+    title: "Unclear Next Step",
+    description: "Calls-to-action are weak, inconsistent or poorly positioned.",
+    consequence: "Interested visitors don't know what to do next.",
   },
 ] as const;
 
 export const codeAuxSystemSteps = [
   {
-    id: "understand",
-    title: "Understand the business",
-    description: "Before designing anything, we understand the business, target customers, goals, and desired actions to prevent designing blindly.",
+    id: "strategy",
+    title: "Strategy",
+    description: "Understand the business, customer, offer and desired action.",
   },
   {
-    id: "position",
-    title: "Clarify and position the offer",
-    description: "We make it immediately obvious what the business does, who it serves, and why someone should choose it.",
+    id: "design",
+    title: "Design",
+    description: "Create hierarchy, credibility and intentional user journeys.",
   },
   {
-    id: "trust",
-    title: "Build trust",
-    description: "We use premium presentation, strong typography, and credibility signals so the website makes the business feel as credible online as it actually is.",
+    id: "development",
+    title: "Development",
+    description: "Build a responsive, performant and polished experience.",
   },
   {
-    id: "friction",
-    title: "Remove friction",
-    description: "We improve loading speed, mobile experience, navigation, and page flow to remove obstacles from the customer journey.",
+    id: "conversion",
+    title: "Conversion",
+    description: "Guide attention toward the actions that matter to the business.",
+  },
+] as const;
+
+export const whyUsComparisons = [
+  {
+    criterion: "Business-first approach",
+    codeaux: "We understand your commercial goals before writing a single line of code.",
+    traditional: "Start immediately with templates and generic layouts.",
   },
   {
-    id: "convert",
-    title: "Create clear conversion paths",
-    description: "CTAs are intentionally positioned so the customer always understands what the logical next step is (Call, WhatsApp, Book, Enquire).",
+    criterion: "Conversion-focused",
+    codeaux: "Every page is designed to guide visitors toward meaningful action.",
+    traditional: "Focus solely on making things look pretty, ignoring the customer journey.",
   },
   {
-    id: "improve",
-    title: "Build around growth",
-    description: "Where appropriate, we connect the website to broader systems for analytics, lead capture, CRM, and automation.",
+    criterion: "Custom strategy",
+    codeaux: "Architecture and design built specifically around your customers and offer.",
+    traditional: "Cookie-cutter approach reused across hundreds of clients.",
+  },
+  {
+    criterion: "Performance",
+    codeaux: "Optimized for speed and mobile experience to eliminate friction.",
+    traditional: "Bloated codebases and plugins that frustrate mobile visitors.",
+  },
+  {
+    criterion: "Revenue mindset",
+    codeaux: "We measure success by leads, bookings, and sales generated.",
+    traditional: "Success is measured by delivering the website files on time.",
+  },
+  {
+    criterion: "After launch",
+    codeaux: "Ongoing support and optimization to keep improving conversion rates.",
+    traditional: "They hand over the keys and move on to the next project.",
+  },
+] as const;
+
+export const customerSolutions = [
+  {
+    id: "clear-messaging",
+    problem: "Unclear Value",
+    solution: "Clear Positioning & Messaging",
+    description: "Structure the website so visitors quickly understand: what the business does, who it's for, why it matters, what they should do next.",
+    outcome: "Faster understanding",
+  },
+  {
+    id: "credibility-driven",
+    problem: "Low Trust",
+    solution: "Credibility-Driven Design",
+    description: "Use hierarchy, presentation, proof, professionalism and intentional visual design to make the business feel established and trustworthy.",
+    outcome: "More intentional enquiries",
+  },
+  {
+    id: "conversion-structure",
+    problem: "Weak Conversion Path",
+    solution: "Conversion-Focused Structure",
+    description: "Build deliberate paths toward: calls, WhatsApp, enquiries, bookings, purchases depending on the business objective.",
+    outcome: "Clear path to action",
+  },
+  {
+    id: "mobile-first",
+    problem: "Mobile Friction",
+    solution: "Mobile-First UX",
+    description: "Design around how real customers browse and take action from phones instead of treating mobile as a compressed desktop website.",
+    outcome: "Frictionless browsing",
+  },
+  {
+    id: "performance-first",
+    problem: "Slow Performance",
+    solution: "Performance-First Development",
+    description: "Prioritize fast loading, responsive interactions, optimized assets and clean implementation.",
+    outcome: "Immediate loading",
+  },
+  {
+    id: "strategic-cta",
+    problem: "Unclear Next Step",
+    solution: "Strategic Calls-to-Action",
+    description: "Place clear, contextual CTAs throughout the customer journey so interested visitors always know the next action.",
+    outcome: "Obvious next actions",
   },
 ] as const;
 
@@ -441,9 +515,11 @@ export const siteContent = {
   capabilities,
   problems,
   customerProblems,
+  customerSolutions,
   primaryService,
   additionalServices,
   whyCodeAuxPillars,
+  whyUsComparisons,
   leadGenerationSteps,
   codeAuxSystemSteps,
   projects,

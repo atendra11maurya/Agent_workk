@@ -6,6 +6,7 @@ import BeforeAfter from "@/app/components/BeforeAfter";
 import { CustomerProblems } from "@/app/components/CustomerProblems";
 import { CodeAuxSolution } from "@/app/components/CodeAuxSolution";
 import { ConversionSection } from "@/app/components/ConversionSection";
+import { WhyUs } from "@/app/components/WhyUs";
 import MotionLayer, { Magnetic, Reveal } from "@/app/components/MotionLayer";
 import SiteChrome from "@/app/components/SiteChrome";
 import {
@@ -357,61 +358,6 @@ export default async function Home() {
 
 
 
-        <section className="pricing-section section-pad">
-          <div className="section-index">
-            <span>08</span>
-            <span>Engagement</span>
-          </div>
-          <Reveal className="section-heading pricing-heading">
-            <p className="section-kicker">Website projects from ₹50,000</p>
-            <h2>
-              Enough investment to{" "}
-              <em>do the work properly.</em>
-            </h2>
-          </Reveal>
-          <div className="pricing-grid">
-            {pricing.map((option, index) => (
-              <article className={`pricing-grid__tier--${index + 1}`} key={option.id}>
-                {"isMostComprehensive" in option && option.isMostComprehensive ? (
-                  <span className="pricing-grid__comprehensive">
-                    Most comprehensive
-                  </span>
-                ) : null}
-                <div className="pricing-grid__meta">
-                  <p className="pricing-grid__eyebrow">
-                    <span>{option.eyebrow}</span>
-                  </p>
-                  <div
-                    className="pricing-grid__scope-meter"
-                    aria-label={`Scope level ${index + 1} of 3`}
-                  >
-                    {Array.from({ length: index + 1 }, (_, meterIndex) => (
-                      <span aria-hidden="true" key={meterIndex} />
-                    ))}
-                  </div>
-                </div>
-                <h3>{option.title}</h3>
-                <strong>{option.headline}</strong>
-                <p>{option.description}</p>
-                <p className="pricing-grid__best-for">
-                  <span>Best for</span>
-                  {option.bestFor}
-                </p>
-                <ul>
-                  {option.services.map((service) => (
-                    <li key={service}>{service}</li>
-                  ))}
-                </ul>
-                <div className="pricing-grid__cta">
-                  <a href="#contact">
-                    Request a Quote <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section id="contact" className="unified-cta-section section-pad">
           <Reveal className="unified-cta-intro">
             <span className="eyebrow">
@@ -475,6 +421,63 @@ export default async function Home() {
           />
         </section>
 
+        <section className="pricing-section section-pad">
+          <div className="section-index">
+            <span>08</span>
+            <span>Engagement</span>
+          </div>
+          <Reveal className="section-heading pricing-heading">
+            <p className="section-kicker">Website projects from ₹50,000</p>
+            <h2>
+              Enough investment to{" "}
+              <em>do the work properly.</em>
+            </h2>
+          </Reveal>
+          <div className="pricing-grid">
+            {pricing.map((option, index) => (
+              <article className={`pricing-grid__tier--${index + 1}`} key={option.id}>
+                {"isMostComprehensive" in option && option.isMostComprehensive ? (
+                  <span className="pricing-grid__comprehensive">
+                    Most comprehensive
+                  </span>
+                ) : null}
+                <div className="pricing-grid__meta">
+                  <p className="pricing-grid__eyebrow">
+                    <span>{option.eyebrow}</span>
+                  </p>
+                  <div
+                    className="pricing-grid__scope-meter"
+                    aria-label={`Scope level ${index + 1} of 3`}
+                  >
+                    {Array.from({ length: index + 1 }, (_, meterIndex) => (
+                      <span aria-hidden="true" key={meterIndex} />
+                    ))}
+                  </div>
+                </div>
+                <h3>{option.title}</h3>
+                <strong>{option.headline}</strong>
+                <p>{option.description}</p>
+                <p className="pricing-grid__best-for">
+                  <span>Best for</span>
+                  {option.bestFor}
+                </p>
+                <ul>
+                  {option.services.map((service) => (
+                    <li key={service}>{service}</li>
+                  ))}
+                </ul>
+                <div className="pricing-grid__cta">
+                  <a href="#contact">
+                    Request a Quote <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+        
+        <WhyUs />
+
       </main>
 
       <footer className="site-footer">
@@ -484,8 +487,8 @@ export default async function Home() {
               className="site-logo site-logo--footer"
               src="/codeaux-logo.png"
               alt="CodeAux logo"
-              width={112}
-              height={112}
+              width={64}
+              height={64}
             />
             <span className="footer-wordmark-text">
               <span className="footer-wordmark-code">Code</span><span className="footer-wordmark-aux">Aux</span>
@@ -504,30 +507,34 @@ export default async function Home() {
             <a href="#work">Work</a>
             <a href="#audit">Free Audit</a>
           </nav>
-          {whatsappHref || contactEmailHref ? (
-            <div className="footer-group footer-contact">
-              <p className="footer-label">Contact</p>
-              {whatsappHref ? (
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  data-analytics-event="whatsapp_click"
-                  data-analytics-placement="footer"
-                >
-                  WhatsApp
-                </a>
-              ) : null}
-              {contactEmailHref ? <a href={contactEmailHref}>Email</a> : null}
-            </div>
-          ) : null}
+          
+          <div className="footer-group footer-contact">
+            <p className="footer-label">Contact</p>
+            <a
+              href={whatsappHref || "#contact"}
+              target={whatsappHref ? "_blank" : undefined}
+              rel={whatsappHref ? "noreferrer" : undefined}
+            >
+              WhatsApp
+            </a>
+            <a href={contactEmailHref || "mailto:hello@codeaux.com"}>Email</a>
+            <a href={bookingHref || "#contact"}>Book a Call</a>
+          </div>
+
           <div className="footer-group footer-project">
             <p className="footer-label">Start a project</p>
+            <p className="footer-project__title">Have a project in mind?</p>
             <p className="footer-project__prompt">
-              Not sure what&apos;s holding your website back?
+              Let’s talk about what would actually move your business forward.
             </p>
             <a
-              className="footer-audit-cta"
+              className="footer-primary-cta"
+              href="#contact"
+            >
+              Start a Conversation <span aria-hidden="true">→</span>
+            </a>
+            <a
+              className="footer-secondary-cta"
               href="#audit"
               data-analytics-event="website_audit_click"
               data-analytics-placement="footer"
@@ -537,11 +544,16 @@ export default async function Home() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 CodeAux</span>
-          <span>Built around business outcomes.</span>
-          <a className="footer-back-to-top" href="#top" aria-label="Back to top">
-            <span aria-hidden="true">↑</span>
-          </a>
+          <div className="footer-bottom-left">
+            <span>© 2026 CODEAUX — BUILT AROUND BUSINESS OUTCOMES.</span>
+          </div>
+          <div className="footer-bottom-right">
+            <a href="/privacy" className="footer-legal-link">Privacy</a>
+            <a href="/terms" className="footer-legal-link">Terms</a>
+            <a className="footer-back-to-top" href="#top" aria-label="Back to top">
+              <span aria-hidden="true">↑</span>
+            </a>
+          </div>
         </div>
       </footer>
 

@@ -6,36 +6,44 @@ export function CustomerProblems() {
     <section className="problem-section section-pad" id="problems">
       <div className="section-index">
         <span>01</span>
-        <span>Customer Problems</span>
+        <span>The Business Problem</span>
       </div>
       <Reveal className="problem-heading">
-        <p className="section-kicker">Diagnostic</p>
         <h2>
-          Your website may look fine.<br />
-          <em>That doesn&apos;t mean it&apos;s working.</em>
+          Why Most Websites Underperform
         </h2>
         <p>
-          Most websites don&apos;t fail because they are ugly. They fail because customers cannot understand the offer, trust the business, or take the next step easily.
+          A website can look good and still lose business. Small points of friction compound into lost attention, lost trust and lost enquiries.
         </p>
       </Reveal>
       
-      <div className="diagnostic-journey">
-        <div className="diagnostic-journey__rail" aria-hidden="true" />
-        <div className="diagnostic-journey__nodes">
-          {customerProblems.map((problem, index) => (
-            <Reveal key={problem.id} delay={0.05 * index} className="diagnostic-journey__node">
-              <div className="diagnostic-journey__indicator">
-                <span className="diagnostic-journey__dot" />
-                <span className="diagnostic-journey__number">{String(index + 1).padStart(2, "0")}</span>
+      <div className="diagnostic-grid">
+        {customerProblems.map((problem, index) => (
+          <Reveal key={problem.id} delay={0.05 * index} className="diagnostic-problem">
+            <div className="diagnostic-problem__header">
+              <span className="diagnostic-problem__number">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className="diagnostic-problem__label">{problem.title}</h3>
+            </div>
+            <div className="diagnostic-problem__body">
+              <p className="diagnostic-problem__description">{problem.description}</p>
+              <div className="diagnostic-problem__consequence">
+                <span className="consequence-label lg:hidden">Business Consequence</span>
+                <p>{problem.consequence}</p>
+                <i className="consequence-arrow" aria-hidden="true">→</i>
               </div>
-              <div className="diagnostic-journey__content">
-                <h3>{problem.title}</h3>
-                <p>{problem.description}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
+
+      <Reveal className="problem-transition" delay={0.3}>
+        <p>
+          These aren&apos;t isolated design problems. They&apos;re points where potential customers are being lost.
+        </p>
+        <div className="problem-transition__connector">
+          <div className="problem-transition__line" />
+        </div>
+      </Reveal>
     </section>
   );
 }
