@@ -220,7 +220,7 @@ export default async function Home() {
 
         <section className="proof-section section-pad" id="work-proof">
           <div className="section-index">
-            <span>06</span>
+            <span>03</span>
             <span>Work proof</span>
           </div>
           <Reveal className="section-heading proof-heading">
@@ -423,7 +423,7 @@ export default async function Home() {
 
         <section className="pricing-section section-pad">
           <div className="section-index">
-            <span>08</span>
+            <span>04</span>
             <span>Engagement</span>
           </div>
           <Reveal className="section-heading pricing-heading">

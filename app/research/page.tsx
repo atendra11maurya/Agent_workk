@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
 import Analytics from "@/app/components/Analytics";
 import MotionLayer from "@/app/components/MotionLayer";
-import ProjectStories from "@/app/components/ProjectStories";
+import { CodeAuxSolution } from "@/app/components/CodeAuxSolution";
 import SiteChrome from "@/app/components/SiteChrome";
 import { siteIdentity } from "@/src/data/site";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: "CodeAux project case studies and work proof.",
-  alternates: { canonical: "/projects" },
+  title: "Research",
+  description: "CodeAux design methodologies and conversion research.",
+  alternates: { canonical: "/research" },
 };
 
-const projectNavigation = [
+const researchNavigation = [
   { label: "Home", href: "/" },
   { label: "Research", href: "/research" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
-export default function ProjectsPage() {
+export default function ResearchPage() {
   return (
     <>
       <Analytics />
       <MotionLayer />
       <SiteChrome
-        navItems={projectNavigation}
+        navItems={researchNavigation}
         homeHref="/"
         contactHref="/#contact"
         auditHref="/#audit"
@@ -32,8 +32,8 @@ export default function ProjectsPage() {
         whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
         whatsappMessage={siteIdentity.whatsappMessage}
       />
-      <main>
-        <ProjectStories />
+      <main className="section-pad">
+        <CodeAuxSolution />
       </main>
     </>
   );

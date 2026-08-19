@@ -12,7 +12,7 @@ export default function ProjectStories() {
   return (
     <section className="work-section section-pad" id="case-studies">
       <div className="section-index">
-        <span>03</span>
+        <span>01</span>
         <span>Case studies</span>
       </div>
       <Reveal className="work-heading section-heading">

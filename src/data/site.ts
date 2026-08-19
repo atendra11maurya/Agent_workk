@@ -26,10 +26,10 @@ export const siteIdentity = {
 } as const;
 
 export const navigation = [
-  { label: "Home", href: "#top" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#work-proof" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#top" },
+  { label: "Research", href: "/research" },
+  { label: "Projects", href: "/#work-proof" },
+  { label: "Contact", href: "/#contact" },
 ] as const satisfies readonly NavigationItem[];
 
 export const capabilities = [

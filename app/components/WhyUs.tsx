@@ -6,7 +6,7 @@ export function WhyUs() {
   return (
     <section className="why-us-section section-pad" id="why-us">
       <div className="section-index">
-        <span>09</span>
+        <span>05</span>
         <span>Why Us</span>
       </div>
       

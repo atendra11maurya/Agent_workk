@@ -9,7 +9,7 @@ export type SiteAnchor =
 
 export interface NavigationItem {
   label: string;
-  href: SiteAnchor;
+  href: SiteAnchor | string;
 }
 
 export interface ProblemItem {
