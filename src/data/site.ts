@@ -22,7 +22,7 @@ export const siteIdentity = {
   primaryCta: "Book a Call",
   whatsappCta: "WhatsApp Us",
   whatsappMessage:
-    "Hi CodeAux, I'm interested in discussing a website project.",
+    "Hi CodeAux team!\n\nI’m interested in a website / redesign for my business.\n\nMy goals:\n— Stronger credibility\n— Better customer experience\n— More inquiries & conversions\n— A more premium presence\n\nI’d like your recommendation on the right approach, scope, timeline & investment.\n\nLet me know when we can discuss the project.",
 } as const;
 
 export const navigation = [

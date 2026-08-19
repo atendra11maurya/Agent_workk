@@ -7,7 +7,7 @@ export type LeadSubmission = {
   projectDetails?: string;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   websiteUrl?: string;
   sourcePath: string;
 };

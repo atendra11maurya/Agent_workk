@@ -22,7 +22,7 @@ export function buildLeadNotification(
     "",
     `Name: ${lead.name}`,
     `Email: ${lead.email}`,
-    `Phone / WhatsApp: ${lead.phone}`,
+    `Phone / WhatsApp: ${lead.phone || "Not provided"}`,
   ];
 
   if (lead.intent) {

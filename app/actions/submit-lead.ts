@@ -1,7 +1,7 @@
 "use server";
 
 import { createResendLeadNotifier } from "@/src/lib/leads/notifier";
-import { createSupabaseLeadRepository } from "@/src/lib/leads/repository";
+import { createLeadRepository } from "@/src/lib/leads/repository";
 import { processLeadSubmission } from "@/src/lib/leads/service";
 import type { LeadFormState, LeadKind } from "@/src/lib/leads/types";
 import {
@@ -36,14 +36,7 @@ export async function submitLead(
     };
   }
 
-  const repository = createSupabaseLeadRepository();
-  if (!repository) {
-    return {
-      status: "error",
-      message:
-        "The enquiry form is temporarily unavailable because secure lead storage is not configured. Please use another contact option on this page.",
-    };
-  }
+  const repository = createLeadRepository();
 
   const result = await processLeadSubmission(validation.data, {
     repository,

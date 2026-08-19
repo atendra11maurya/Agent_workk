@@ -19,10 +19,14 @@ import {
 import { getRequestSiteUrl } from "@/src/lib/site-url";
 
 function getWhatsappHref() {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+  const rawNumber =
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "+918957003542";
+  const number = rawNumber.replace(/\D/g, "");
 
   if (!number || !/^\d{8,15}$/.test(number)) {
-    return null;
+    return `https://wa.me/918957003542?text=${encodeURIComponent(
+      siteIdentity.whatsappMessage,
+    )}`;
   }
 
   return `https://wa.me/${number}?text=${encodeURIComponent(
@@ -44,9 +48,15 @@ export default async function Home() {
   const whatsappHref = getWhatsappHref();
   const contactEmailHref = getContactEmailHref();
   const secondaryHref = whatsappHref || "#audit";
-  const leadCaptureAvailable = Boolean(
-    process.env.SUPABASE_URL && process.env.SUPABASE_SECRET_KEY,
-  );
+  const contactPhone =
+    process.env.NEXT_PUBLIC_CONTACT_PHONE?.trim() || "+918957003542";
+  const contactPhoneDigits = contactPhone.replace(/\D/g, "") || "918957003542";
+  const callHref = `tel:${
+    contactPhoneDigits.startsWith("91")
+      ? `+${contactPhoneDigits}`
+      : `+91${contactPhoneDigits}`
+  }`;
+  const leadCaptureAvailable = true;
   const siteUrl = getRequestSiteUrl(await headers());
   const structuredData = [
     {
@@ -372,7 +382,7 @@ export default async function Home() {
 
           <Reveal className="massive-contact-buttons" delay={0.1}>
             <a 
-              href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE?.replace(/\D/g, "") || ""}`} 
+              href={callHref} 
               className="massive-button massive-button--call"
               data-analytics-event="call_click"
               data-analytics-placement="massive_button"
@@ -382,10 +392,10 @@ export default async function Home() {
                   <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
                 </svg>
               </span>
-              Call Us Directly
+              Call Us: +91 89570 03542
             </a>
             <a 
-              href={whatsappHref || "#"} 
+              href={whatsappHref} 
               target="_blank" 
               rel="noreferrer" 
               className="massive-button massive-button--wa"
@@ -416,7 +426,7 @@ export default async function Home() {
           <ConversionSection
             whatsappHref={whatsappHref}
             contactEmailHref={contactEmailHref}
-            phoneNumber={process.env.NEXT_PUBLIC_CONTACT_PHONE}
+            phoneNumber={contactPhone}
             available={leadCaptureAvailable}
           />
         </section>

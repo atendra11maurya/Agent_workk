@@ -74,6 +74,16 @@ const websiteUrlSchema = z.preprocess(
     }, "Use an http or https website URL."),
 );
 
+const optionalPhoneSchema = z.preprocess(
+  (value) => (typeof value === "string" && !value.trim() ? undefined : value),
+  phoneSchema.optional(),
+);
+
+const optionalWebsiteUrlSchema = z.preprocess(
+  (value) => (typeof value === "string" && !value.trim() ? undefined : value),
+  websiteUrlSchema.optional(),
+);
+
 const intentSchema = z.enum(["build", "redesign", "audit"]);
 
 const projectDetailsSchema = z
@@ -96,7 +106,7 @@ const baseSchema = z.object({
   submissionId: z.string().uuid("Refresh the page and try again."),
   name: nameSchema,
   email: emailSchema,
-  phone: phoneSchema,
+  phone: optionalPhoneSchema,
   intent: intentSchema.optional(),
   projectDetails: projectDetailsSchema,
   sourcePath: sourcePathSchema,
@@ -104,7 +114,7 @@ const baseSchema = z.object({
 
 const contactSchema = baseSchema.extend({
   kind: z.literal("contact"),
-  websiteUrl: z.undefined().optional(),
+  websiteUrl: optionalWebsiteUrlSchema,
 });
 
 const auditSchema = baseSchema.extend({
@@ -136,16 +146,18 @@ export function hasFilledHoneypot(formData: FormData) {
 
 export function validateLeadFormData(formData: FormData): LeadValidationResult {
   const kind = formValue(formData, "kind");
+  const rawWebsiteUrl = formValue(formData, "websiteUrl");
+  const websiteUrl = rawWebsiteUrl && rawWebsiteUrl.trim() ? rawWebsiteUrl.trim() : undefined;
+
   const result = leadSubmissionSchema.safeParse({
     submissionId: formValue(formData, "submissionId"),
     kind,
     name: formValue(formData, "name"),
     email: formValue(formData, "email"),
-    phone: formValue(formData, "phone"),
+    phone: formValue(formData, "phone")?.trim() || undefined,
     intent: formValue(formData, "intent") as any,
-    projectDetails: formValue(formData, "projectDetails"),
-    websiteUrl:
-      kind === "audit" || formValue(formData, "intent") === "redesign" ? formValue(formData, "websiteUrl") : undefined,
+    projectDetails: formValue(formData, "projectDetails")?.trim() || undefined,
+    websiteUrl,
     sourcePath: formValue(formData, "sourcePath"),
   });
 

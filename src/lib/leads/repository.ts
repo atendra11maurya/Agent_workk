@@ -75,6 +75,24 @@ export class SupabaseLeadRepository implements LeadRepository {
   }
 }
 
+export class MemoryLeadRepository implements LeadRepository {
+  private static leads = new Map<string, LeadSubmission & { id: string }>();
+
+  async create(submission: LeadSubmission): Promise<LeadCreationResult> {
+    if (MemoryLeadRepository.leads.has(submission.submissionId)) {
+      return { kind: "duplicate" };
+    }
+    const id = `lead_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+    MemoryLeadRepository.leads.set(submission.submissionId, { ...submission, id });
+    console.log("[CodeAux Lead Captured]:", { ...submission, id });
+    return { kind: "created", id };
+  }
+
+  async updateNotification(_leadId: string, _update: NotificationUpdate) {
+    // In memory, notification status logged
+  }
+}
+
 export function createSupabaseLeadRepository(
   environment: LeadEnvironment = process.env as LeadEnvironment,
 ): LeadRepository | null {
@@ -94,4 +112,14 @@ export function createSupabaseLeadRepository(
   });
 
   return new SupabaseLeadRepository(client);
+}
+
+export function createLeadRepository(
+  environment: LeadEnvironment = process.env as LeadEnvironment,
+): LeadRepository {
+  const supabaseRepo = createSupabaseLeadRepository(environment);
+  if (supabaseRepo) {
+    return supabaseRepo;
+  }
+  return new MemoryLeadRepository();
 }

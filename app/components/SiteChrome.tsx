@@ -27,7 +27,7 @@ const DEFAULT_NAV_ITEMS: readonly SiteNavigationItem[] = [
 ];
 
 const DEFAULT_WHATSAPP_MESSAGE =
-  "Hi CodeAux, I'm interested in discussing a website project.";
+  "Hi CodeAux team!\n\nI’m interested in a website / redesign for my business.\n\nMy goals:\n— Stronger credibility\n— Better customer experience\n— More inquiries & conversions\n— A more premium presence\n\nI’d like your recommendation on the right approach, scope, timeline & investment.\n\nLet me know when we can discuss the project.";
 
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -53,10 +53,12 @@ export function getWhatsappHref(
   number?: string | null,
   message = DEFAULT_WHATSAPP_MESSAGE,
 ) {
-  const digits = number?.replace(/\D/g, "") ?? "";
+  const rawNumber =
+    number || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+918957003542";
+  const digits = rawNumber.replace(/\D/g, "");
 
   if (!/^\d{8,15}$/.test(digits)) {
-    return null;
+    return `https://wa.me/918957003542?text=${encodeURIComponent(message)}`;
   }
 
   return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
