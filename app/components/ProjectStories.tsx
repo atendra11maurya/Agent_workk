@@ -22,9 +22,8 @@ export default function ProjectStories() {
           <em>Five stories, ready for proof.</em>
         </h2>
         <p>
-          Each case study will pair the project work with verified screenshots,
-          context and outcomes. These current slots are intentionally marked as
-          demo content.
+          Live projects are linked directly. Remaining case-study slots will
+          pair verified screenshots, context and outcomes before publication.
         </p>
       </Reveal>
 
@@ -98,6 +97,18 @@ export default function ProjectStories() {
                     ? "Verified project outcome will be added here."
                     : project.shortOutcome}
                 </p>
+                {!placeholder ? (
+                  <a
+                    className="project-live-link"
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-analytics-event="portfolio_interaction"
+                    data-analytics-project={project.id}
+                  >
+                    View live site <span aria-hidden="true">↗</span>
+                  </a>
+                ) : null}
               </div>
             </article>
           );

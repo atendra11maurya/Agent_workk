@@ -82,6 +82,8 @@ test("server-renders project case studies on their dedicated page", async () => 
 
   const html = await response.text();
   assert.match(html, /Case studies built to show the thinking/i);
+  assert.match(html, /Shagun Beauty &amp; Bridal Makeup Studio/i);
+  assert.match(html, /https:\/\/beauty-paaarlour\.vercel\.app\//i);
   assert.match(html, /Demo content · Replace before public launch/i);
   assert.match(html, /Project slot 05/i);
   assert.match(html, /rel="canonical" href="https:\/\/codeaux\.example\/projects"/i);

@@ -60,7 +60,7 @@ export interface PublishedProject {
   title: string;
   client: string;
   category: string;
-  projectImage: ImageAsset;
+  projectImage?: ImageAsset;
   shortOutcome: string;
   problem: string;
   strategy: string;

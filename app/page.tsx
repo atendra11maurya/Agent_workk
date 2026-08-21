@@ -334,28 +334,35 @@ export default async function Home() {
 
           <div className="comparison-block">
             <div className="comparison-copy">
-              <p className="section-kicker">Before / After system</p>
-              <h3>Show the transformation, not just a change of color.</h3>
+              <p className="section-kicker">Beauty parlour / Before & after</p>
+              <h3>From cluttered and dated to calm, credible and booking-ready.</h3>
               <p>
-                Drag or use the arrow keys to test the comparison interaction.
-                Both images are demo media and make no client claim.
+                Drag the slider to compare a deliberately dated starting-point
+                concept with a scrolling recording of the finished Shagun
+                Beauty &amp; Bridal Makeup Studio project.
               </p>
             </div>
             <BeforeAfter
-              demo
-              label="Compare two demo proof images"
+              label="Compare the conceptual before design and the live Shagun Beauty and Bridal Makeup Studio project"
+              aspectRatio="1918 / 910"
               before={{
-                src: "/proof-concrete.jpg",
-                alt: "Demo before image showing monochrome concrete geometry",
+                src: "/beauty-parlour-before.png",
+                alt: "Conceptual dated and cluttered beauty parlour website design",
                 objectPosition: "50% 50%",
               }}
               after={{
-                src: "/proof-blue-glass.jpg",
-                alt: "Demo after image showing blue-lit glass architecture",
-                objectPosition: "50% 44%",
+                src: "/beauty-parlour-after.webp",
+                alt: "Live scrolling preview of the Shagun Beauty and Bridal Makeup Studio website",
+                objectPosition: "50% 35%",
               }}
-              beforeLabel="Before demo"
-              afterLabel="After demo"
+              afterVideoSrc="/beauty-parlour-after-scroll-v3.mp4"
+              beforeLabel=""
+              afterLabel=""
+              caption={
+                <>
+                  Conceptual before design · Finished site walkthrough · <a href="https://beauty-paaarlour.vercel.app/" target="_blank" rel="noreferrer">View the full site ↗</a>
+                </>
+              }
             />
           </div>
           <div className="proof-case-studies-cta">

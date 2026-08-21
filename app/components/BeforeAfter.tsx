@@ -17,6 +17,8 @@ export interface ComparisonImage {
 
 export interface BeforeAfterProps {
   after: ComparisonImage;
+  afterEmbedSrc?: string;
+  afterVideoSrc?: string;
   afterLabel?: string;
   aspectRatio?: CSSProperties["aspectRatio"];
   before: ComparisonImage;
@@ -41,6 +43,8 @@ function clampPosition(value: number) {
 
 export default function BeforeAfter({
   after,
+  afterEmbedSrc,
+  afterVideoSrc,
   afterLabel = "After",
   aspectRatio = "16 / 10",
   before,
@@ -112,15 +116,37 @@ export default function BeforeAfter({
           className="before-after__layer before-after__layer--after"
           style={{ inset: 0, position: "absolute" }}
         >
-          <Image
-            className="before-after__image"
-            src={after.src}
-            alt={after.alt}
-            fill
-            sizes={sizes}
-            draggable={false}
-            style={{ objectFit: "cover", objectPosition: after.objectPosition }}
-          />
+          {afterVideoSrc ? (
+            <video
+              className="before-after__video"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={after.alt}
+            >
+              <source src={afterVideoSrc} type="video/mp4" />
+            </video>
+          ) : afterEmbedSrc ? (
+            <div className="before-after__live-preview" aria-label={after.alt}>
+              <iframe
+                src={afterEmbedSrc}
+                title={after.alt}
+                loading="lazy"
+                tabIndex={-1}
+              />
+            </div>
+          ) : (
+            <Image
+              className="before-after__image"
+              src={after.src}
+              alt={after.alt}
+              fill
+              sizes={sizes}
+              draggable={false}
+              style={{ objectFit: "cover", objectPosition: after.objectPosition }}
+            />
+          )}
         </div>
 
         <div
@@ -138,12 +164,16 @@ export default function BeforeAfter({
           />
         </div>
 
-        <span className="before-after__badge before-after__badge--before">
-          {beforeLabel}
-        </span>
-        <span className="before-after__badge before-after__badge--after">
-          {afterLabel}
-        </span>
+        {beforeLabel ? (
+          <span className="before-after__badge before-after__badge--before">
+            {beforeLabel}
+          </span>
+        ) : null}
+        {afterLabel ? (
+          <span className="before-after__badge before-after__badge--after">
+            {afterLabel}
+          </span>
+        ) : null}
 
         <div
           className="before-after__divider"

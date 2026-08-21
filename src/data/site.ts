@@ -249,13 +249,24 @@ const projectRequirements = [
 
 export const projects: readonly ProjectRecord[] = [
   {
-    status: "placeholder",
-    id: "project-slot-1",
-    slotLabel: "Project slot 01 — awaiting verified client content",
-    reason: "awaiting-verified-content",
-    visibility: "visible",
-    artDirection: "interface",
-    requiredContent: projectRequirements,
+    status: "published",
+    id: "beauty-parlour-website",
+    slug: "beauty-parlour-website",
+    title: "Shagun Beauty & Bridal Makeup Studio",
+    client: "Shagun Beauty & Bridal Makeup Studio",
+    category: "Beauty & bridal studio website",
+    projectImage: {
+      src: "/beauty-parlour-after.webp",
+      alt: "Bridal makeup from Shagun Beauty and Bridal Makeup Studio",
+      width: 864,
+      height: 1296,
+    },
+    shortOutcome: "A live website that presents Shagun’s beauty and bridal services online.",
+    problem: "Create a credible online presence for the beauty and bridal studio.",
+    strategy: "Design and develop a focused website around services, trust and appointment enquiries.",
+    results: ["Live website launched"],
+    liveUrl: "https://beauty-paaarlour.vercel.app/",
+    featured: true,
   },
   {
     status: "placeholder",

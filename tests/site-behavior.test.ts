@@ -17,11 +17,21 @@ afterEach(() => {
 });
 
 describe("site content states", () => {
-  it("keeps every proof placeholder explicit and free of published claims", () => {
+  it("keeps unverified proof placeholders explicit and free of published claims", () => {
     expect(projects).toHaveLength(5);
     expect(videoProof).toHaveLength(3);
 
-    for (const project of projects) {
+    const placeholders = projects.filter(
+      (project) => project.status === "placeholder",
+    );
+
+    expect(projects[0]).toMatchObject({
+      status: "published",
+      title: "Shagun Beauty & Bridal Makeup Studio",
+      liveUrl: "https://beauty-paaarlour.vercel.app/",
+    });
+
+    for (const project of placeholders) {
       expect(project.status).toBe("placeholder");
       expect(project).toMatchObject({
         visibility: "visible",

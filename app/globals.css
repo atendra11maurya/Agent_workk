@@ -1511,6 +1511,50 @@ h1 em {
   user-select: none;
 }
 
+.before-after__video {
+  width: 100%;
+  height: 100%;
+  background: #050608;
+  object-fit: contain;
+  object-position: center;
+}
+
+.before-after__live-preview {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #f8eee7;
+}
+
+.before-after__live-preview iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 3500px;
+  border: 0;
+  pointer-events: none;
+  transform: scale(0.58);
+  transform-origin: top left;
+  animation: live-site-scroll 18s ease-in-out infinite alternate;
+}
+
+@keyframes live-site-scroll {
+  from {
+    transform: scale(0.58) translateY(0);
+  }
+
+  to {
+    transform: scale(0.58) translateY(-1650px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .before-after__live-preview iframe {
+    animation: none;
+  }
+}
+
 .before-after__badge {
   position: absolute;
   z-index: 3;
@@ -2412,6 +2456,24 @@ h1 em {
 html.has-custom-cursor a,
 html.has-custom-cursor button {
   cursor: none;
+}
+
+.project-live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.project-live-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
 }
 
 /* Mobile menu */
