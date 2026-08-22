@@ -154,52 +154,26 @@ export default async function Home() {
             </Reveal>
           </div>
 
-          <Reveal className="hero-system" delay={0.16} distance={16}>
-            <div className="system-topline">
-              <span>CODEAUX / CONVERSION SYSTEM</span>
-              <span>LIVE</span>
-            </div>
-            <div
-              className="system-canvas"
-              aria-label="A website conversion system from attention to action"
-            >
-              <div className="system-card card-message">
-                <span>01 / MESSAGE</span>
-                <strong>Make the value clear.</strong>
-                <i />
-                <i />
-              </div>
-              <div className="system-card card-proof">
-                <span>02 / PROOF</span>
-                <strong>Give people a reason to trust.</strong>
-                <div className="proof-bars">
-                  <i />
-                  <i />
-                  <i />
-                </div>
-              </div>
-              <div className="conversion-rail" aria-hidden="true">
-                <span className="rail-node rail-node-one" />
-                <span className="rail-node rail-node-two" />
-                <span className="rail-node rail-node-three" />
-                <span className="rail-node rail-node-four" />
-              </div>
-              <div className="rail-labels" aria-hidden="true">
-                <span>Attention</span>
-                <span>Clarity</span>
-                <span>Trust</span>
-                <span>Action</span>
-              </div>
-              <div className="system-action">
-                <span>THE NEXT STEP IS OBVIOUS</span>
-                <strong>Start a conversation</strong>
-                <b aria-hidden="true">↗</b>
-              </div>
-            </div>
-            <div className="system-footer">
-              <span>Business before technology</span>
-              <span>01—04</span>
-            </div>
+          <Reveal className="hero-project-proof" delay={0.16} distance={16}>
+            <BeforeAfter
+              className="hero-before-after"
+              label="Compare the previous Shagun Beauty and Bridal Makeup Studio website and the finished redesign"
+              aspectRatio="16 / 10"
+              browserChrome
+              initialPosition={38}
+              before={{
+                src: "/beauty-parlour-before-v2.png",
+                alt: "Previous Shagun Beauty and Bridal Makeup Studio website design",
+                objectPosition: "50% 0%",
+              }}
+              after={{
+                src: "/beauty-parlour-after.webp",
+                alt: "Scrolling walkthrough of the finished Shagun Beauty and Bridal Makeup Studio website",
+              }}
+              afterVideoSrc="/beauty-parlour-after-scroll-v3.mp4"
+              beforeLabel=""
+              afterLabel=""
+            />
           </Reveal>
         </section>
 
@@ -335,20 +309,20 @@ export default async function Home() {
           <div className="comparison-block">
             <div className="comparison-copy">
               <p className="section-kicker">Beauty parlour / Before & after</p>
-              <h3>From cluttered and dated to calm, credible and booking-ready.</h3>
+              <h3>From a modest online presence to calm, credible and booking-ready.</h3>
               <p>
-                Drag the slider to compare a deliberately dated starting-point
-                concept with a scrolling recording of the finished Shagun
-                Beauty &amp; Bridal Makeup Studio project.
+                Drag the slider to compare the previous site with a scrolling
+                recording of the finished Shagun Beauty &amp; Bridal Makeup Studio
+                project.
               </p>
             </div>
             <BeforeAfter
-              label="Compare the conceptual before design and the live Shagun Beauty and Bridal Makeup Studio project"
-              aspectRatio="1918 / 910"
+              label="Compare the previous Shagun Beauty and Bridal Makeup Studio site and the live redesign"
+              aspectRatio="21 / 10"
               before={{
-                src: "/beauty-parlour-before.png",
-                alt: "Conceptual dated and cluttered beauty parlour website design",
-                objectPosition: "50% 50%",
+                src: "/beauty-parlour-before-v2.png",
+                alt: "Previous Shagun Beauty and Bridal Makeup Studio website design",
+                objectPosition: "50% 0%",
               }}
               after={{
                 src: "/beauty-parlour-after.webp",
@@ -360,7 +334,7 @@ export default async function Home() {
               afterLabel=""
               caption={
                 <>
-                  Conceptual before design · Finished site walkthrough · <a href="https://beauty-paaarlour.vercel.app/" target="_blank" rel="noreferrer">View the full site ↗</a>
+                  Previous site · Finished site walkthrough · <a href="https://beauty-paaarlour.vercel.app/" target="_blank" rel="noreferrer">View the full site ↗</a>
                 </>
               }
             />

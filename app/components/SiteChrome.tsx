@@ -53,12 +53,14 @@ export function getWhatsappHref(
   number?: string | null,
   message = DEFAULT_WHATSAPP_MESSAGE,
 ) {
-  const rawNumber =
-    number || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+918957003542";
+  const rawNumber = number ?? process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+  if (!rawNumber) {
+    return null;
+  }
   const digits = rawNumber.replace(/\D/g, "");
 
   if (!/^\d{8,15}$/.test(digits)) {
-    return `https://wa.me/918957003542?text=${encodeURIComponent(message)}`;
+    return null;
   }
 
   return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;

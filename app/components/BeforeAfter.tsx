@@ -23,6 +23,7 @@ export interface BeforeAfterProps {
   aspectRatio?: CSSProperties["aspectRatio"];
   before: ComparisonImage;
   beforeLabel?: string;
+  browserChrome?: boolean;
   caption?: ReactNode;
   className?: string;
   demo?: boolean;
@@ -49,6 +50,7 @@ export default function BeforeAfter({
   aspectRatio = "16 / 10",
   before,
   beforeLabel = "Before",
+  browserChrome = false,
   caption,
   className,
   demo = false,
@@ -100,7 +102,7 @@ export default function BeforeAfter({
       style={comparisonStyle}
     >
       <div
-        className="before-after__viewport"
+        className={`before-after__viewport${browserChrome ? " before-after__viewport--browser" : ""}`}
         data-focused={isFocused ? "true" : "false"}
         role="group"
         aria-label={label}
@@ -112,10 +114,54 @@ export default function BeforeAfter({
           position: "relative",
         }}
       >
-        <div
-          className="before-after__layer before-after__layer--after"
-          style={{ inset: 0, position: "absolute" }}
-        >
+        {browserChrome ? (
+          <div className="before-after__browser-chrome" aria-hidden="true">
+            <div className="before-after__browser-dots">
+              <span className="before-after__browser-dot before-after__browser-dot--close" />
+              <span className="before-after__browser-dot before-after__browser-dot--min" />
+              <span className="before-after__browser-dot before-after__browser-dot--max" />
+            </div>
+            <div className="before-after__browser-bar">
+              <svg
+                className="before-after__lock-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span className="before-after__browser-url">
+                <span className="before-after__browser-protocol">https://</span>shagunbeauty.in
+              </span>
+              <svg
+                className="before-after__reload-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+              </svg>
+            </div>
+            <div className="before-after__browser-actions" />
+          </div>
+        ) : null}
+
+        <div className="before-after__canvas">
+          <div
+            className="before-after__layer before-after__layer--after"
+            style={{ inset: 0, position: "absolute" }}
+          >
           {afterVideoSrc ? (
             <video
               className="before-after__video"
@@ -147,43 +193,55 @@ export default function BeforeAfter({
               style={{ objectFit: "cover", objectPosition: after.objectPosition }}
             />
           )}
-        </div>
+          </div>
 
-        <div
-          className="before-after__layer before-after__layer--before"
-          style={{ clipPath, inset: 0, position: "absolute" }}
-        >
-          <Image
-            className="before-after__image"
-            src={before.src}
-            alt={before.alt}
-            fill
-            sizes={sizes}
-            draggable={false}
-            style={{ objectFit: "cover", objectPosition: before.objectPosition }}
-          />
-        </div>
+          <div
+            className="before-after__layer before-after__layer--before"
+            style={{ clipPath, inset: 0, position: "absolute" }}
+          >
+            <Image
+              className="before-after__image"
+              src={before.src}
+              alt={before.alt}
+              fill
+              sizes={sizes}
+              draggable={false}
+              style={{ objectFit: "cover", objectPosition: before.objectPosition }}
+            />
+          </div>
 
-        {beforeLabel ? (
-          <span className="before-after__badge before-after__badge--before">
-            {beforeLabel}
-          </span>
-        ) : null}
-        {afterLabel ? (
-          <span className="before-after__badge before-after__badge--after">
-            {afterLabel}
-          </span>
-        ) : null}
+          {beforeLabel ? (
+            <span className="before-after__badge before-after__badge--before">
+              {beforeLabel}
+            </span>
+          ) : null}
+          {afterLabel ? (
+            <span className="before-after__badge before-after__badge--after">
+              {afterLabel}
+            </span>
+          ) : null}
 
-        <div
-          className="before-after__divider"
-          style={{ left: `${position}%` }}
-          aria-hidden="true"
-        >
-          <span className="before-after__handle">
-            <span>←</span>
-            <span>→</span>
-          </span>
+          <div
+            className="before-after__divider"
+            style={{ left: `${position}%` }}
+            aria-hidden="true"
+          >
+            <span className="before-after__handle">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 18-6-6 6-6" />
+                <path d="m15 6 6 6-6 6" />
+              </svg>
+            </span>
+          </div>
         </div>
 
         <input
