@@ -21,9 +21,10 @@ export interface BeforeAfterProps {
   afterVideoSrc?: string;
   afterLabel?: string;
   aspectRatio?: CSSProperties["aspectRatio"];
-  before: ComparisonImage;
+  before?: ComparisonImage;
   beforeLabel?: string;
   browserChrome?: boolean;
+  browserUrl?: string;
   caption?: ReactNode;
   className?: string;
   demo?: boolean;
@@ -51,6 +52,7 @@ export default function BeforeAfter({
   before,
   beforeLabel = "Before",
   browserChrome = false,
+  browserUrl = "shagunbeauty.in",
   caption,
   className,
   demo = false,
@@ -137,7 +139,7 @@ export default function BeforeAfter({
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
               <span className="before-after__browser-url">
-                <span className="before-after__browser-protocol">https://</span>shagunbeauty.in
+                <span className="before-after__browser-protocol">https://</span>{browserUrl}
               </span>
               <svg
                 className="before-after__reload-icon"
@@ -195,80 +197,86 @@ export default function BeforeAfter({
           )}
           </div>
 
-          <div
-            className="before-after__layer before-after__layer--before"
-            style={{ clipPath, inset: 0, position: "absolute" }}
-          >
-            <Image
-              className="before-after__image"
-              src={before.src}
-              alt={before.alt}
-              fill
-              sizes={sizes}
-              draggable={false}
-              style={{ objectFit: "cover", objectPosition: before.objectPosition }}
-            />
-          </div>
-
-          {beforeLabel ? (
-            <span className="before-after__badge before-after__badge--before">
-              {beforeLabel}
-            </span>
-          ) : null}
-          {afterLabel ? (
-            <span className="before-after__badge before-after__badge--after">
-              {afterLabel}
-            </span>
-          ) : null}
-
-          <div
-            className="before-after__divider"
-            style={{ left: `${position}%` }}
-            aria-hidden="true"
-          >
-            <span className="before-after__handle">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          {before ? (
+            <>
+              <div
+                className="before-after__layer before-after__layer--before"
+                style={{ clipPath, inset: 0, position: "absolute" }}
               >
-                <path d="m9 18-6-6 6-6" />
-                <path d="m15 6 6 6-6 6" />
-              </svg>
-            </span>
-          </div>
+                <Image
+                  className="before-after__image"
+                  src={before.src}
+                  alt={before.alt}
+                  fill
+                  sizes={sizes}
+                  draggable={false}
+                  style={{ objectFit: "cover", objectPosition: before.objectPosition }}
+                />
+              </div>
+
+              {beforeLabel ? (
+                <span className="before-after__badge before-after__badge--before">
+                  {beforeLabel}
+                </span>
+              ) : null}
+              {afterLabel ? (
+                <span className="before-after__badge before-after__badge--after">
+                  {afterLabel}
+                </span>
+              ) : null}
+
+              <div
+                className="before-after__divider"
+                style={{ left: `${position}%` }}
+                aria-hidden="true"
+              >
+                <span className="before-after__handle">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18-6-6 6-6" />
+                    <path d="m15 6 6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </>
+          ) : null}
         </div>
 
-        <input
-          className="before-after__range"
-          type="range"
-          min="0"
-          max="100"
-          step={safeStep}
-          value={position}
-          aria-label={label}
-          aria-describedby={descriptionIds || undefined}
-          aria-valuetext={`${position}% of the before image visible`}
-          onBlur={() => setIsFocused(false)}
-          onInput={(event) => updatePosition(event.currentTarget.value)}
-          onKeyDown={handleKeyDown}
-          onFocus={() => setIsFocused(true)}
-          style={{
-            cursor: "ew-resize",
-            height: "100%",
-            inset: 0,
-            margin: 0,
-            opacity: 0,
-            position: "absolute",
-            width: "100%",
-            zIndex: 4,
-          }}
-        />
+        {before ? (
+          <input
+            className="before-after__range"
+            type="range"
+            min="0"
+            max="100"
+            step={safeStep}
+            value={position}
+            aria-label={label}
+            aria-describedby={descriptionIds || undefined}
+            aria-valuetext={`${position}% of the before image visible`}
+            onBlur={() => setIsFocused(false)}
+            onInput={(event) => updatePosition(event.currentTarget.value)}
+            onKeyDown={handleKeyDown}
+            onFocus={() => setIsFocused(true)}
+            style={{
+              cursor: "ew-resize",
+              height: "100%",
+              inset: 0,
+              margin: 0,
+              opacity: 0,
+              position: "absolute",
+              width: "100%",
+              zIndex: 4,
+            }}
+          />
+        ) : null}
       </div>
 
       {caption || demo ? (

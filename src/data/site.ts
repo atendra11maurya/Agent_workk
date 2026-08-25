@@ -520,6 +520,83 @@ export const customerSolutions = [
   },
 ] as const;
 
+export interface ShowcaseProject {
+  id: string;
+  badge: string;
+  tabLabel: string;
+  title: string;
+  headline: string;
+  description: string;
+  videoSrc: string;
+  poster: string;
+  beforeImage?: string;
+  browserUrl: string;
+  liveUrl?: string;
+  tags: readonly string[];
+  caption: string;
+}
+
+export const showcaseProjects: readonly ShowcaseProject[] = [
+  {
+    id: "shagun-beauty",
+    badge: "Beauty Parlour / Before & After",
+    tabLabel: "Shagun Beauty",
+    title: "Shagun Beauty & Bridal Makeup Studio",
+    headline: "From a modest online presence to calm, credible and booking-ready.",
+    description:
+      "Drag the slider to compare the previous site with a scrolling recording of the finished Shagun Beauty & Bridal Makeup Studio project.",
+    videoSrc: "/beauty-parlour-after-scroll-v3.mp4",
+    poster: "/beauty-parlour-after.webp",
+    beforeImage: "/beauty-parlour-before-v2.png",
+    browserUrl: "shagunbeauty.in",
+    liveUrl: "https://beauty-paaarlour.vercel.app/",
+    tags: ["Beauty & Bridal", "Redesign & Conversion", "Online Bookings"],
+    caption: "Previous site · Finished site walkthrough",
+  },
+  {
+    id: "mindbridge-psychology",
+    badge: "Mental Health / Clinical Presence",
+    tabLabel: "MindBridge Psychology",
+    title: "MindBridge Psychology",
+    headline: "Evidence-based psychological care, built with warmth and instant trust.",
+    description:
+      "A serene, empathetic practice website featuring seamless session booking, RCI credential highlights, and approachable guidance for individuals seeking care.",
+    videoSrc: "/mindbridge-psychology-scroll.mp4",
+    poster: "/mindbridge-poster.jpg",
+    browserUrl: "mindbridgepsychology.com",
+    tags: ["Healthcare & Therapy", "RCI Accredited Trust", "Session Funnel"],
+    caption: "Live scrolling recording · MindBridge Psychology",
+  },
+  {
+    id: "rasai-ai",
+    badge: "Creative Tech / AI Video Agency",
+    tabLabel: "RASAI AI Studios",
+    title: "RASAI — AI Creative Video Studio",
+    headline: "10X brand AI video output in hours without a traditional production crew.",
+    description:
+      "A high-converting, dark-mode agency platform showcasing 600+ AI films and 30+ brand collaborations with instant client onboarding.",
+    videoSrc: "/rasai-ai-films-scroll.mp4",
+    poster: "/rasai-poster.jpg",
+    browserUrl: "rasai.ai",
+    tags: ["Creative Tech", "600+ AI Films", "High-Impact UI"],
+    caption: "Live scrolling recording · RASAI AI Studio",
+  },
+  {
+    id: "growzy-tech",
+    badge: "B2B SaaS / Enterprise Platform",
+    tabLabel: "Growzy Enterprise",
+    title: "Growzy — Enterprise Revenue Engine",
+    headline: "Bridging the gap between business logic and enterprise workflows.",
+    description:
+      "An enterprise-grade B2B SaaS platform driving over ₹2Cr+ in client pipeline with real-time metrics, workflow transparency, and high conversion.",
+    videoSrc: "/growzy-tech-scroll.mp4",
+    poster: "/growzy-poster.jpg",
+    browserUrl: "growzy.io",
+    tags: ["B2B Enterprise", "₹2Cr+ Pipeline Driven", "SaaS Workflows"],
+    caption: "Live scrolling recording · Growzy Enterprise",
+  },
+] as const;
+
 export const siteContent = {
   identity: siteIdentity,
   navigation,
@@ -534,6 +611,7 @@ export const siteContent = {
   leadGenerationSteps,
   codeAuxSystemSteps,
   projects,
+  showcaseProjects,
   videoProof,
   testimonials,
   pricing,

@@ -3,6 +3,7 @@ import Script from "next/script";
 import { headers } from "next/headers";
 import Analytics from "@/app/components/Analytics";
 import BeforeAfter from "@/app/components/BeforeAfter";
+import ProjectShowcase from "@/app/components/ProjectShowcase";
 import { CustomerProblems } from "@/app/components/CustomerProblems";
 import { CodeAuxSolution } from "@/app/components/CodeAuxSolution";
 import { ConversionSection } from "@/app/components/ConversionSection";
@@ -306,39 +307,7 @@ export default async function Home() {
             })}
           </div>
 
-          <div className="comparison-block">
-            <div className="comparison-copy">
-              <p className="section-kicker">Beauty parlour / Before & after</p>
-              <h3>From a modest online presence to calm, credible and booking-ready.</h3>
-              <p>
-                Drag the slider to compare the previous site with a scrolling
-                recording of the finished Shagun Beauty &amp; Bridal Makeup Studio
-                project.
-              </p>
-            </div>
-            <BeforeAfter
-              label="Compare the previous Shagun Beauty and Bridal Makeup Studio site and the live redesign"
-              aspectRatio="21 / 10"
-              before={{
-                src: "/beauty-parlour-before-v2.png",
-                alt: "Previous Shagun Beauty and Bridal Makeup Studio website design",
-                objectPosition: "50% 0%",
-              }}
-              after={{
-                src: "/beauty-parlour-after.webp",
-                alt: "Live scrolling preview of the Shagun Beauty and Bridal Makeup Studio website",
-                objectPosition: "50% 35%",
-              }}
-              afterVideoSrc="/beauty-parlour-after-scroll-v3.mp4"
-              beforeLabel=""
-              afterLabel=""
-              caption={
-                <>
-                  Previous site · Finished site walkthrough · <a href="https://beauty-paaarlour.vercel.app/" target="_blank" rel="noreferrer">View the full site ↗</a>
-                </>
-              }
-            />
-          </div>
+          <ProjectShowcase />
           <div className="proof-case-studies-cta">
             <a className="proof-detail-link" href="/projects">
               <span>View all case studies</span>
