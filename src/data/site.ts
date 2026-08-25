@@ -527,6 +527,7 @@ export interface ShowcaseProject {
   title: string;
   headline: string;
   description: string;
+  videoAv1Src?: string;
   videoSrc: string;
   poster: string;
   beforeImage?: string;
@@ -545,6 +546,7 @@ export const showcaseProjects: readonly ShowcaseProject[] = [
     headline: "From a modest online presence to calm, credible and booking-ready.",
     description:
       "Drag the slider to compare the previous site with a scrolling recording of the finished Shagun Beauty & Bridal Makeup Studio project.",
+    videoAv1Src: "/beauty-parlour-after-scroll-v3.webm",
     videoSrc: "/beauty-parlour-after-scroll-v3.mp4",
     poster: "/beauty-parlour-after.webp",
     beforeImage: "/beauty-parlour-before-v2.png",
@@ -561,6 +563,7 @@ export const showcaseProjects: readonly ShowcaseProject[] = [
     headline: "Evidence-based psychological care, built with warmth and instant trust.",
     description:
       "A serene, empathetic practice website featuring seamless session booking, RCI credential highlights, and approachable guidance for individuals seeking care.",
+    videoAv1Src: "/mindbridge-psychology-scroll.webm",
     videoSrc: "/mindbridge-psychology-scroll.mp4",
     poster: "/mindbridge-poster.jpg",
     browserUrl: "mindbridgepsychology.com",
@@ -575,6 +578,7 @@ export const showcaseProjects: readonly ShowcaseProject[] = [
     headline: "10X brand AI video output in hours without a traditional production crew.",
     description:
       "A high-converting, dark-mode agency platform showcasing 600+ AI films and 30+ brand collaborations with instant client onboarding.",
+    videoAv1Src: "/rasai-ai-films-scroll.webm",
     videoSrc: "/rasai-ai-films-scroll.mp4",
     poster: "/rasai-poster.jpg",
     browserUrl: "rasai.ai",
@@ -589,6 +593,7 @@ export const showcaseProjects: readonly ShowcaseProject[] = [
     headline: "Bridging the gap between business logic and enterprise workflows.",
     description:
       "An enterprise-grade B2B SaaS platform driving over ₹2Cr+ in client pipeline with real-time metrics, workflow transparency, and high conversion.",
+    videoAv1Src: "/growzy-tech-scroll.webm",
     videoSrc: "/growzy-tech-scroll.mp4",
     poster: "/growzy-poster.jpg",
     browserUrl: "growzy.io",

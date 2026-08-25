@@ -171,6 +171,7 @@ export default async function Home() {
                 src: "/beauty-parlour-after.webp",
                 alt: "Scrolling walkthrough of the finished Shagun Beauty and Bridal Makeup Studio website",
               }}
+              afterVideoAv1Src="/beauty-parlour-after-scroll-v3.webm"
               afterVideoSrc="/beauty-parlour-after-scroll-v3.mp4"
               beforeLabel=""
               afterLabel=""

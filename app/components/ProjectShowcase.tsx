@@ -135,6 +135,7 @@ export default function ProjectShowcase({
               alt: `Live scrolling preview of ${current.title}`,
               objectPosition: "50% 35%",
             }}
+            afterVideoAv1Src={current.videoAv1Src}
             afterVideoSrc={current.videoSrc}
             beforeLabel={current.beforeImage ? "Before" : ""}
             afterLabel={current.beforeImage ? "After" : "Live Site"}

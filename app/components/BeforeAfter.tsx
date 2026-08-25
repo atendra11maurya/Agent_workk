@@ -2,7 +2,9 @@
 
 import Image, { type ImageProps } from "next/image";
 import {
+  useEffect,
   useId,
+  useRef,
   useState,
   type CSSProperties,
   type KeyboardEvent,
@@ -18,6 +20,7 @@ export interface ComparisonImage {
 export interface BeforeAfterProps {
   after: ComparisonImage;
   afterEmbedSrc?: string;
+  afterVideoAv1Src?: string;
   afterVideoSrc?: string;
   afterLabel?: string;
   aspectRatio?: CSSProperties["aspectRatio"];
@@ -46,6 +49,7 @@ function clampPosition(value: number) {
 export default function BeforeAfter({
   after,
   afterEmbedSrc,
+  afterVideoAv1Src,
   afterVideoSrc,
   afterLabel = "After",
   aspectRatio = "16 / 10",
@@ -66,6 +70,8 @@ export default function BeforeAfter({
     clampPosition(initialPosition),
   );
   const [isFocused, setIsFocused] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const captionId = useId();
   const demoId = useId();
   const descriptionIds = [caption ? captionId : null, demo ? demoId : null]
@@ -97,6 +103,23 @@ export default function BeforeAfter({
       setPosition(event.key === "Home" ? 0 : 100);
     }
   };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Browser prevented autoplay or requires user interaction
+        });
+      }
+    }
+  }, [afterVideoSrc, afterVideoAv1Src]);
+
+  const hasVideo = Boolean(afterVideoSrc || afterVideoAv1Src);
+  const posterUrl = typeof after.src === "string" ? after.src : undefined;
 
   return (
     <figure
@@ -164,17 +187,54 @@ export default function BeforeAfter({
             className="before-after__layer before-after__layer--after"
             style={{ inset: 0, position: "absolute" }}
           >
-          {afterVideoSrc ? (
-            <video
-              className="before-after__video"
-              autoPlay
-              loop
-              muted
-              playsInline
-              aria-label={after.alt}
-            >
-              <source src={afterVideoSrc} type="video/mp4" />
-            </video>
+          {hasVideo ? (
+            <div className="before-after__video-wrapper" style={{ position: "relative", width: "100%", height: "100%" }}>
+              <Image
+                className="before-after__image before-after__image--poster"
+                src={after.src}
+                alt={after.alt}
+                fill
+                sizes={sizes}
+                priority
+                draggable={false}
+                style={{
+                  objectFit: "cover",
+                  objectPosition: after.objectPosition,
+                  opacity: isVideoLoaded ? 0 : 1,
+                  transition: "opacity 0.4s ease",
+                  pointerEvents: "none",
+                  zIndex: 1,
+                }}
+              />
+              <video
+                ref={videoRef}
+                className="before-after__video"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster={posterUrl}
+                aria-label={after.alt}
+                onLoadedData={() => setIsVideoLoaded(true)}
+                onPlaying={() => setIsVideoLoaded(true)}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: 2,
+                }}
+              >
+                {afterVideoAv1Src ? (
+                  <source src={afterVideoAv1Src} type="video/webm; codecs=av01.0.05M.08" />
+                ) : null}
+                {afterVideoSrc ? (
+                  <source src={afterVideoSrc} type="video/mp4" />
+                ) : null}
+              </video>
+            </div>
           ) : afterEmbedSrc ? (
             <div className="before-after__live-preview" aria-label={after.alt}>
               <iframe
